@@ -1,0 +1,64 @@
+
+# make gui create image image translate to sides image then save input to test file
+
+# input: photos of different views of an object in a 3d space
+# output: weight of the object
+
+# first I need to parse the words from the input text
+# 1. read the first line which contains N and create a NxNxN list using: a = [None] * N
+# 2. the second, third and fourth contains data for the actual image
+# for the 2nd-4th, separate each word using txt.split()
+
+
+# this stores info on every cell in the cube 1: depth 2: rows, 3: columns
+# idea consider each row as depth of a cell with the first element being the first cell that is in front of the viewer
+# eg.  <) --> [1, 1, 1]
+# let's assume that the observer (front) is on the left side of the matrix:
+
+#                  (I V :)>
+#
+#     _||_       [1, 1, 1]    <- left slice from viewers pov
+#    ( >_>) -->  [1, 1, 1]
+#                [1, 1, 1]
+#                    [1, 1, 1]  <- center slice
+#                    [1, 1, 1]
+#                    [1, 1, 1]
+#                       [1, 1, 1] <- right slice
+#                       [1, 1, 1]
+#                       [1, 1, 1]
+#
+#                  <(: ^ I)
+
+# that means:          - left side of array x N     := front
+#                      - right side of array x N    := back
+#                      - last array x N             := bottom
+#                      - first array x N            := top
+#                      - first matrix               := left
+#                      - last matrix                := right
+
+
+
+
+
+# ====================== ELIMINATION 1. PROCESS [DONE] ===================================
+
+# Rules:
+# - when one cell on one side is ".", all affected cells are in set to 0:
+# X := {0,1,2} (horizontal slice from top to bottom)
+# Y := {0, ..., N}
+# -> if image_input[X]["front"][Y] == "."   then cube_space[Y][X][0->N] that means the entire row should be set to 0
+# -> if image_input[X]["back"][Y] == "."    then cube_space[N-Y][X][0->N] that means the entire row should be set to 0
+
+# -> if image_input[X]["top"][Y] == "."    then cube_space[Y][0->N][N-X] that means the entire column should be set to 0
+# -> if image_input[X]["bottom"][Y] == "."  then cube_space[Y][0->N][X] that means the entire column should be set to 0
+
+# -> if image_input[X]["left"][Y] == "."    then cube_space[0->N][X][N-Y] that means all the (0,N)[y,z] elements in each
+#                                                                       matrix should be set to 0
+# -> if image_input[X]["right"][Y] == "."   then cube_space[0->N][X][Y] that means the the (0,0) elements in each matrix
+#                                                                       should be set to 0
+
+# ===================== ELIMINATION 2. PROCESS ===================================
+# Compare color from image_input to current cube_space element. If no match, then set that element to 0
+# Compare color of cube from all sides. If there is a case where there is no match, automatically set voxel to 0
+
+# ===================== Add up all the cells (trivial) [DONE] ==========================
