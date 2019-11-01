@@ -21,9 +21,12 @@ def calculate_weight(n, i):
     N = n
     cube_space = np.ones((N, N, N))
 
+    print("N changed to " + str(N))
+
     scan_for_see_through(i)
     scan_for_no_match(i)
     print_max_weight()
+    print(cube_space)
 
 
 # sums up all the nonempty voxels in the 3d space
@@ -102,7 +105,7 @@ def scan_for_see_through(image_input):
                 if pixel == ".":
                     # print ("At slice " + str(index) + " Found see through pixel in " + side + " -> " + pixels + " at " + str(pindex))
                     # print("Value to be given: " + str(index) + " " + side + " " + str(pindex))
-                    delete_nonexistent_voxel(index, side, pindex)
+                    delete_nonexistent_voxels(index, side, pindex)
 
 
 def front_case(index, pindex):
@@ -148,7 +151,7 @@ def bottom_case(index, pindex):
 
 
 # given location and side of voxel (maybe use a tupel?) delete depthwise all neighbors of that voxel
-def delete_nonexistent_voxel(index, side, pindex):
+def delete_nonexistent_voxels(index, side, pindex):
     switch = {
         "front": lambda: front_case(index, pindex),
         "back": lambda: back_case(index, pindex),
@@ -164,8 +167,34 @@ def delete_nonexistent_voxel(index, side, pindex):
 # ======================================================================================
 #            =========== SECOND ELIMINATION (THROUGH COMPARISON) ===========
 # ======================================================================================
+corners = [
+    (0, 0, 0),
+    (0, 0, 1),
+    (0, 1, 0),
+    (0, 1, 1),
+    (1, 0, 0),
+    (1, 0, 1),
+    (1, 1, 0),
+    (1, 1, 1)
+           ]
+
+
 # analyzes nonempty voxels in cube_space
 # check if all accessible sides are same color. If no match, then set voxel to 0
 def scan_for_no_match(inp):
+    compare_corners()
+
     return 0
 
+
+def compare_corners():
+    corners_new = corners.copy()
+    for i, t in enumerate(corners_new):
+        corners_new[i] = tuple((N-1) * x for x in t)
+
+    for (X, Y, Z) in corners_new:
+        print(X, Y, Z)
+
+
+def compare_edges():
+    return 0

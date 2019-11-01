@@ -59,6 +59,12 @@
 
 # ===================== ELIMINATION 2. PROCESS ===================================
 # Compare color from image_input to current cube_space element. If no match, then set that element to 0
-# Compare color of cube from all sides. If there is a case where there is no match, automatically set voxel to 0
+# Compare color of cube from all sides. If there is a case where there is no match, automatically set voxel to
+
+
+
+
+
+
 
 # ===================== Add up all the cells (trivial) [DONE] ==========================

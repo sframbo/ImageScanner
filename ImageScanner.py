@@ -8,10 +8,11 @@ i = "input.txt"
 
 image_input = open(i)
 
-# transform textfile into a 4x6 matrix
+# transform text file into a 4x6 matrix
 image_input = process_input(image_input)
 
 print(image_input)
 
+# calculate the weight for each object in the file
 for (n, i) in image_input:
     calculate_weight(n, i)
