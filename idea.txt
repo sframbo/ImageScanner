@@ -18,7 +18,7 @@
 #                  (I V :)>
 #
 #     _||_       [1, 1, 1]    <- left slice from viewers pov
-#    ( >_>) -->  [1, 1, 1]
+#    ( >_>) -->  [0, 1, 1]
 #                [1, 1, 1]
 #                    [1, 1, 1]  <- center slice
 #                    [1, 1, 1]
@@ -35,6 +35,14 @@
 #                      - first array x N            := top
 #                      - first matrix               := left
 #                      - last matrix                := right
+
+Is voxel at image[X][Y][P]...
+front viewable? = when everything to the left of the voxel is empty === image[X][Y][0->P-1] == 0 or doesn't exist
+back viewable? = when everything to the right of the voxel is empty === image[X][Y][P+1->N] == 0 or doesn't exist
+top viewable? = when everything on top of the voxel is empty        === image[X][0->Y-1][P] == 0
+bottom viewable? = when everything below the voxel is empty         === image[X][Y+1->N][P] == 0
+left viewable?  = when everything behind the voxel is empty         === image[0->X-1][Y][P] == 0
+right viewable? = when everything in front of the voxel is empty    === image[X+1->N][Y][P] == 0
 
 
 
@@ -62,9 +70,62 @@
 # Compare color of cube from all sides. If there is a case where there is no match, automatically set voxel to
 
 
+000
 
+front   00 Y ||  back    0N N
+left    0N Y ||  right   00 N
+top     N0 Y ||  bottom  00 N
 
+001
+
+front   00 N ||  back    0N Y
+left    00 Y ||  right   0N N
+top     00 Y ||  bottom  N0 N
+
+010
+
+front   N0 Y ||  back    NN N
+left    NN Y ||  right   N0 N
+top     N0 N ||  bottom  00 Y
+
+011
+
+front   N0 N ||  back    NN Y
+left    N0 Y ||  right   NN N
+top     00 N ||  bottom  N0 Y
+
+100
+
+front   0N Y ||  back    00 N
+left    0N N ||  right   00 Y
+top     NN Y ||  bottom  0N N
+
+101
+
+front   0N N ||  back    00 Y
+left    00 Y ||  right   0N N
+top     0N Y ||  bottom  NN N
+
+110
+
+front   NN Y ||  back    N0 N
+left    NN N ||  right   N0 Y
+top     NN N ||  bottom  0N Y
+
+111
+
+front   NN N ||  back    N0 Y
+left    N0 N ||  right   NN Y
+top     0N N ||  bottom  NN Y
+
+front viewable?
 
 
 
 # ===================== Add up all the cells (trivial) [DONE] ==========================
+
+- Problem beschreibung
+- Limitations
+- Visualisierung vom Cube
+- Problem dargestellt viele Randfaelle
+- Demo
