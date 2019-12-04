@@ -1,4 +1,6 @@
 import numpy as np
+from Colors import translate_to, RED, GREEN, YELLOW, BLUE, CLEAR
+from Sides import FRONT, LEFT, BACK, RIGHT, TOP, BOTTOM, translate_to_side
 
 
 # TO DO:
@@ -84,14 +86,22 @@ def prepare_object_data(n, offset, text_arr):
 def prepare_slice(line):
     line = line.split()
     horizontal_slice = {
-        "front" : line[0],
-        "left"  : line[1],
-        "back"  : line[2],
-        "right" : line[3],
-        "top"   : line[4],
-        "bottom": line[5]
+        FRONT:  process_line(line[0]),
+        LEFT:   process_line(line[1]),
+        BACK:   process_line(line[2]),
+        RIGHT:  process_line(line[3]),
+        TOP:    process_line(line[4]),
+        BOTTOM: process_line(line[5])
     }
     return horizontal_slice
+
+
+# accepts an array of strings returns an array of data type Color
+def process_line(line):
+    output = []
+    for i in line:
+        output.append(translate_to(i))
+    return output
 
 
 # not used. For reference only
@@ -117,19 +127,19 @@ def scan_for_see_through(image_input):
     for index, horizontal_slice in enumerate(image_input):
         for side, pixels in horizontal_slice.items():
             for pindex, pixel in enumerate(pixels):
-                if pixel == ".":
+                if pixel == CLEAR:
                     delete_nonexistent_voxels(index, side, pindex)
 
 
 # given location and side of voxel (maybe use a tupel?) delete depthwise all neighbors of that voxel
 def delete_nonexistent_voxels(index, side, pindex):
     switch = {
-        "front": lambda: front_back_case(index, pindex, "front"),
-        "back": lambda: front_back_case(index, pindex, "back"),
-        "left": lambda: right_left_case(index, pindex, "left"),
-        "right": lambda: right_left_case(index, pindex, "right"),
-        "top": lambda: top_bottom_case(index, pindex, "top"),
-        "bottom": lambda: top_bottom_case(index, pindex, "bottom")
+        FRONT: lambda: front_back_case(index, pindex, FRONT),
+        BACK: lambda: front_back_case(index, pindex, BACK),
+        LEFT: lambda: right_left_case(index, pindex, LEFT),
+        RIGHT: lambda: right_left_case(index, pindex, RIGHT),
+        TOP: lambda: top_bottom_case(index, pindex, TOP),
+        BOTTOM: lambda: top_bottom_case(index, pindex, BOTTOM)
     }
     func = switch.get(side, lambda: "invalid")
     return func()
@@ -137,7 +147,7 @@ def delete_nonexistent_voxels(index, side, pindex):
 
 def front_back_case(index, pindex, side):
     global cube_space
-    pindex = N - pindex -1 if side == "back" else pindex
+    pindex = N - pindex -1 if side == BACK else pindex
     for p in range(N):
         cube_space[pindex][index][p] = 0
     # print(cube_space)
@@ -145,7 +155,7 @@ def front_back_case(index, pindex, side):
 
 def right_left_case(index, pindex, side):
     global cube_space
-    pindex = N - pindex -1 if side == "left" else pindex
+    pindex = N - pindex -1 if side == LEFT else pindex
     for p in range(N):
         cube_space[p][index][pindex] = 0
     # print(cube_space)
@@ -153,7 +163,7 @@ def right_left_case(index, pindex, side):
 
 def top_bottom_case(index, pindex, side):
     global cube_space
-    index = N - index - 1 if side == "top" else index
+    index = N - index - 1 if side == TOP else index
     for p in range(N):
         cube_space[pindex][p][index] = 0
 
@@ -196,10 +206,10 @@ def is_accessible(X, Y, P):
 # given location address of voxel, check if colors match from all viewable sides
 def is_solid(X, Y, P):
     colors = []
-    sides = ["top", "bottom", "front", "back", "left", "right"]
+    sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
 
     for side in sides:
-        colors.append(get_color(side, X, Y, P)) if is_viewable(side, X, Y, P) else nothing()
+        colors.append(get_color(side, X, Y, P).initial) if is_viewable(side, X, Y, P) else nothing()
         if len(set(colors)) > 1: # check if more than one color is detected
             return False
     return True
@@ -207,12 +217,12 @@ def is_solid(X, Y, P):
 
 def is_viewable(side, X, Y, P):
     switch = {
-        "front": lambda: is_front_back_viewable(X, Y, 0, P),
-        "back": lambda: is_front_back_viewable(X, Y, P+1, N),
-        "left": lambda: is_left_right_viewable(Y, P, 0, X),
-        "right": lambda: is_left_right_viewable(Y, P, X+1, N),
-        "top": lambda: is_top_bottom_viewable(X, P, 0, Y),
-        "bottom": lambda: is_top_bottom_viewable(X, P, Y+1, N),
+        FRONT: lambda: is_front_back_viewable(X, Y, 0, P),
+        BACK: lambda: is_front_back_viewable(X, Y, P+1, N),
+        LEFT: lambda: is_left_right_viewable(Y, P, 0, X),
+        RIGHT: lambda: is_left_right_viewable(Y, P, X+1, N),
+        TOP: lambda: is_top_bottom_viewable(X, P, 0, Y),
+        BOTTOM: lambda: is_top_bottom_viewable(X, P, Y+1, N),
     }
     func = switch.get(side, lambda: "invalid")
     return func()
@@ -225,12 +235,12 @@ def nothing():
 def get_color(side, X, Y, P):
     offset = -1
     switch = {
-        "front": lambda : object_data[Y]["front"][X],
-        "back": lambda: object_data[Y]["back"][N-X+offset],
-        "left": lambda: object_data[Y]["left"][N-P+offset],
-        "right": lambda: object_data[Y]["right"][P],
-        "top": lambda: object_data[N-P+offset]["top"][X],
-        "bottom": lambda: object_data[P]["bottom"][X],
+        FRONT: lambda:   object_data[Y][FRONT][X],
+        BACK: lambda:     object_data[Y][BACK][N-X+offset],
+        LEFT: lambda:     object_data[Y][LEFT][N-P+offset],
+        RIGHT: lambda:    object_data[Y][RIGHT][P],
+        TOP: lambda:      object_data[N-P+offset][TOP][X],
+        BOTTOM: lambda:   object_data[P][BOTTOM][X],
     }
     func = switch.get(side, lambda: "invalid")
     return func()
