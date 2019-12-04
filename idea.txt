@@ -126,6 +126,6 @@ front viewable?
 
 - Problem beschreibung
 - Limitations
-- Visualisierung vom Cube
+- Visualisierung vom Cube (suggestion: maybe save color of viewable cubes)
 - Problem dargestellt viele Randfaelle
 - Demo

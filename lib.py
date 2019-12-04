@@ -1,5 +1,13 @@
 import numpy as np
 
+
+# TO DO:
+# - create data type for color and transparent
+# - find a way to visually recreate the cube after algorithm
+# - add extra algorithm of checking if voxel is viewable and if not, then check from the opposite side. If at some point
+#       a voxel is not viewable, assume the rest as not viewable . . R - - - L
+
+
 # this represents the 3-dimensional space containing the object
 # each matrix represents a vertical slice of the space with the viewer observing it from the left of the container
 cube_space = [] # save color
@@ -46,6 +54,7 @@ def get_object_data():
 # ===================================================================
 # accepts text file and returns a list of object data
 def process_input(inp):
+    #TO DO: prepare lines so that each data is translated into a certain datatype
     text_arr = inp.readlines()
     done = False
     index = 0

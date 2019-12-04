@@ -1,7 +1,21 @@
 import numpy as np
+from enum import Enum
+from typing import NewType
 
-arr = np.ones((3,3,3))
+class Color(Enum):
+    RED = 1
+    BLUE = 2
+    GREEN = 3
 
-print(arr)
 
-print(sum(arr))
+Color = NewType('Color', str)
+
+RED = Color('R')
+GREEN = Color('G')
+MAGENTA = Color('M')
+CLEAR = Color('.')
+
+
+
+print(RED)
+print(RED + MAGENTA)
