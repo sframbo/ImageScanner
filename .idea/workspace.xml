@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7297b14d-1fe0-4d53-a2d4-2dffb8c83e95" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Colors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Sides.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Colors.py" beforeDir="false" afterPath="$PROJECT_DIR$/Colors.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
     </list>

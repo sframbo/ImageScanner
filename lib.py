@@ -1,7 +1,7 @@
 import numpy as np
-from Colors import translate_to, RED, GREEN, YELLOW, BLUE, CLEAR
+from Colors import translate_to, RED, GREEN, YELLOW, BLUE, CLEAR, UNKNOWN
 from Sides import FRONT, LEFT, BACK, RIGHT, TOP, BOTTOM, translate_to_side
-
+from tests import plot
 
 # TO DO:
 # - create data type for color and transparent
@@ -23,7 +23,7 @@ def calculate_weight(n, i):
     global object_data
 
     N = n
-    cube_space = np.ones((N, N, N))
+    initialize_cube_space(N)
     object_data = i
 
     print("N changed to " + str(N))
@@ -32,11 +32,18 @@ def calculate_weight(n, i):
     scan_for_no_match(i)
     print_max_weight()
     print(cube_space)
+    plot(N, cube_space)
 
 
 # sums up all the nonempty voxels in the 3d space
 def print_max_weight():
-    print("Maximum Weight: " + str(np.sum(cube_space)) + " gram(s)")
+    sum = 0
+    for x in range(cube_space.shape[0]):
+        for y in range(cube_space.shape[1]):
+            for z in range(cube_space.shape[2]):
+                sum = sum + cube_space[x,y,z][0]
+    print("Maximum Weight: " + str(sum) + " gram(s)")
+
 
 
 def get_cube_space():
@@ -51,12 +58,21 @@ def get_object_data():
     return object_data
 
 
+def initialize_cube_space(N):
+    global cube_space
+    cube_space = np.empty((N,N,N), dtype=object)
+    for a in range(cube_space.shape[0]):
+        for b in range(cube_space.shape[1]):
+            for c in range(cube_space.shape[2]):
+                cube_space[a, b, c] = [1, "r"]
+
+
+
 # ===================================================================
 #            =========== INPUT PROCESSING ===========
 # ===================================================================
 # accepts text file and returns a list of object data
 def process_input(inp):
-    #TO DO: prepare lines so that each data is translated into a certain datatype
     text_arr = inp.readlines()
     done = False
     index = 0
@@ -75,11 +91,11 @@ def process_input(inp):
 
 # accepts N:=dimension, offset in text and text input list. Returns array of dictionary containing horizontal slices
 def prepare_object_data(n, offset, text_arr):
-    object_data = []
+    obj_d = []
     for i in range(n):
         horizontal_slice = prepare_slice(text_arr[offset+i+1])
-        object_data.append(horizontal_slice)
-    return object_data
+        obj_d.append(horizontal_slice)
+    return obj_d
 
 
 # accepts a line from the text, splits by space and returns a horizontal slice (dict)
@@ -149,7 +165,7 @@ def front_back_case(index, pindex, side):
     global cube_space
     pindex = N - pindex -1 if side == BACK else pindex
     for p in range(N):
-        cube_space[pindex][index][p] = 0
+        cube_space[pindex][index][p][0] = 0
     # print(cube_space)
 
 
@@ -157,7 +173,7 @@ def right_left_case(index, pindex, side):
     global cube_space
     pindex = N - pindex -1 if side == LEFT else pindex
     for p in range(N):
-        cube_space[p][index][pindex] = 0
+        cube_space[p][index][pindex][0] = 0
     # print(cube_space)
 
 
@@ -165,7 +181,7 @@ def top_bottom_case(index, pindex, side):
     global cube_space
     index = N - index - 1 if side == TOP else index
     for p in range(N):
-        cube_space[pindex][p][index] = 0
+        cube_space[pindex][p][index][0] = 0
 
 
 # ======================================================================================
@@ -193,10 +209,13 @@ def scan_for_no_match(inp):
         for Y, arr in enumerate(vertical_slice):
             for P, voxel in enumerate(arr):
                 # collect all color data from observable sides
-                if voxel == 1:
+                if cube_space[X][Y][P][0] == 1:
                     # if not is_accessible(X, Y, P):
                     #     break
-                    cube_space[X][Y][P] = 0 if not is_solid(X, Y, P) else voxel
+
+                    cube_space[X][Y][P] = [0, UNKNOWN] if not is_solid(X,Y,P) else [1, get_true_color(X, Y, P)]
+
+
 
 
 def is_accessible(X, Y, P):
@@ -213,6 +232,26 @@ def is_solid(X, Y, P):
         if len(set(colors)) > 1: # check if more than one color is detected
             return False
     return True
+
+
+def get_true_color(X, Y, P):
+    sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
+    for side in sides:
+        if is_viewable(side, X, Y, P):
+            return get_color(side, X, Y, P).hex
+
+
+# def is_solid(X, Y, P):
+#     colors = []
+#     sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
+#
+#     for side in sides:
+#         colors.append(get_color(side, X, Y, P).initial) if is_viewable(side, X, Y, P) else nothing()
+#         if len(set(colors)) > 1: # check if more than one color is detected
+#             return False
+#     return True
+
+
 
 
 def is_viewable(side, X, Y, P):
@@ -232,6 +271,7 @@ def nothing():
     pass
 
 
+
 def get_color(side, X, Y, P):
     offset = -1
     switch = {
@@ -249,7 +289,7 @@ def get_color(side, X, Y, P):
 def is_front_back_viewable(X, Y, start, end):
     ans = True
     for i in range(start, end):
-        if cube_space[X][Y][i] == 1:
+        if cube_space[X][Y][i][0] == 1:
             ans = False
             break
     return ans
@@ -258,7 +298,7 @@ def is_front_back_viewable(X, Y, start, end):
 def is_top_bottom_viewable(X, P, start, end):
     ans = True
     for i in range(start, end):
-        if cube_space[X][i][P] == 1:
+        if cube_space[X][i][P][0] == 1:
             ans = False
             break
     return ans
@@ -267,7 +307,7 @@ def is_top_bottom_viewable(X, P, start, end):
 def is_left_right_viewable(Y, P, start, end):
     ans = True
     for i in range(start, end):
-        if cube_space[i][Y][P] == 1:
+        if cube_space[i][Y][P][0] == 1:
             ans = False
             break
     return ans
