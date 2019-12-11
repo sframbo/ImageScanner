@@ -4,7 +4,7 @@ from lib import *
 print("Please enter input file location.")
 
 # i = input()
-i = "input.txt"
+i = "input3.txt"
 
 image_input = open(i)
 
@@ -15,4 +15,4 @@ print(image_input)
 
 # calculate the weight for each object in the file
 for (n, i) in image_input:
-    calculate_weight(n, i)
+    calculate_weight(n, i, False)

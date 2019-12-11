@@ -1,11 +1,12 @@
 import numpy as np
-from Colors import translate_to, RED, GREEN, YELLOW, BLUE, CLEAR, UNKNOWN
-from Sides import FRONT, LEFT, BACK, RIGHT, TOP, BOTTOM, translate_to_side
-from tests import plot
+from timeit import default_timer as timer
+from Colors import translate_to, VOID, CLEAR
+from Sides import FRONT, LEFT, BACK, RIGHT, TOP, BOTTOM
+from Plotting import plot
 
 # TO DO:
-# - create data type for color and transparent
-# - find a way to visually recreate the cube after algorithm
+# - create data type for color and transparent -- DONE
+# - find a way to visually recreate the cube after algorithm -- DONE
 # - add extra algorithm of checking if voxel is viewable and if not, then check from the opposite side. If at some point
 #       a voxel is not viewable, assume the rest as not viewable . . R - - - L
 
@@ -17,45 +18,65 @@ N = 0   # dimension
 object_data = []    # image data of current object being processed
 
 
-def calculate_weight(n, i):
+def calculate_weight(n, i, timed=True):
     global N
     global cube_space
     global object_data
-
+    runtime = 0
     N = n
-    initialize_cube_space(N)
-    object_data = i
-
     print("N changed to " + str(N))
 
+    start = timer()
+    initialize_cube_space(N)
+    end = timer()
+    if timed:
+        print("#####################################################################")
+        print("######################### RUN TIME ANALYSIS #########################")
+        print("#####################################################################")
+        print("Cubic dimension: {}x{}x{}".format(N, N, N))
+
+        print("Initialize cube elapse time: {} seconds".format(end - start))
+    runtime += end-start
+    object_data = i
+
+    start = timer()
     scan_for_see_through(i)
+    end = timer()
+    if timed:
+        print("Scanning for void pixels: {} seconds".format(end - start))
+    runtime += end-start
+
+    start = timer()
     scan_for_no_match(i)
+    end = timer()
+    if timed:
+        print("Scanning for match violations: {} seconds".format(end - start))
+    runtime += end - start
+
+    start = timer()
     print_max_weight()
-    print(cube_space)
+    end = timer()
+    if timed:
+        print("Calculating cubic volume: {} seconds".format(end - start))
+        print("#####################################################################")
+        print("##########################       END        #########################")
+        print("#####################################################################")
+    runtime += end - start
+
+    print("Runtime: {}".format(runtime))
+    # print(cube_space)
     plot(N, cube_space)
+
 
 
 # sums up all the nonempty voxels in the 3d space
 def print_max_weight():
-    sum = 0
+    total = 0
     for x in range(cube_space.shape[0]):
         for y in range(cube_space.shape[1]):
             for z in range(cube_space.shape[2]):
-                sum = sum + cube_space[x,y,z][0]
-    print("Maximum Weight: " + str(sum) + " gram(s)")
-
-
-
-def get_cube_space():
-    return cube_space
-
-
-def get_n():
-    return N
-
-
-def get_object_data():
-    return object_data
+                total = total + cube_space[x,y,z][0]
+    print("Maximum Weight: " + str(total) + " gram(s)")
 
 
 def initialize_cube_space(N):
@@ -65,7 +86,6 @@ def initialize_cube_space(N):
         for b in range(cube_space.shape[1]):
             for c in range(cube_space.shape[2]):
                 cube_space[a, b, c] = [1, "r"]
-
 
 
 # ===================================================================
@@ -120,20 +140,6 @@ def process_line(line):
     return output
 
 
-# not used. For reference only
-def process_input_o(inp):
-    global N
-    global cube_space
-    N = 3
-    image_input_d = [
-        {"front": ".R.", "left": "YYR", "back": ".Y.", "right": "RYY", "top": ".Y.", "bottom": ".R."},
-        {"front": "GRB", "left": "YGR", "back": "BYG", "right": "RBY", "top": "GYB", "bottom": "GRB"},
-        {"front": ".R.", "left": "YRR", "back": ".Y.", "right": "RRY", "top": ".R.", "bottom": ".Y."}
-    ]
-    cube_space = np.ones((N, N, N))
-    return image_input_d
-
-
 # ===================================================================
 #            =========== FIRST ELIMINATION ===========
 # ===================================================================
@@ -143,18 +149,17 @@ def scan_for_see_through(image_input):
     for index, horizontal_slice in enumerate(image_input):
         for side, pixels in horizontal_slice.items():
             for pindex, pixel in enumerate(pixels):
-                if pixel == CLEAR:
+                if pixel == VOID:
                     delete_nonexistent_voxels(index, side, pindex)
 
 
-# given location and side of voxel (maybe use a tupel?) delete depthwise all neighbors of that voxel
 def delete_nonexistent_voxels(index, side, pindex):
     switch = {
-        FRONT: lambda: front_back_case(index, pindex, FRONT),
-        BACK: lambda: front_back_case(index, pindex, BACK),
-        LEFT: lambda: right_left_case(index, pindex, LEFT),
-        RIGHT: lambda: right_left_case(index, pindex, RIGHT),
-        TOP: lambda: top_bottom_case(index, pindex, TOP),
+        FRONT:  lambda: front_back_case(index, pindex, FRONT),
+        BACK:   lambda: front_back_case(index, pindex, BACK),
+        LEFT:   lambda: right_left_case(index, pindex, LEFT),
+        RIGHT:  lambda: right_left_case(index, pindex, RIGHT),
+        TOP:    lambda: top_bottom_case(index, pindex, TOP),
         BOTTOM: lambda: top_bottom_case(index, pindex, BOTTOM)
     }
     func = switch.get(side, lambda: "invalid")
@@ -166,7 +171,6 @@ def front_back_case(index, pindex, side):
     pindex = N - pindex -1 if side == BACK else pindex
     for p in range(N):
         cube_space[pindex][index][p][0] = 0
-    # print(cube_space)
 
 
 def right_left_case(index, pindex, side):
@@ -174,7 +178,6 @@ def right_left_case(index, pindex, side):
     pindex = N - pindex -1 if side == LEFT else pindex
     for p in range(N):
         cube_space[p][index][pindex][0] = 0
-    # print(cube_space)
 
 
 def top_bottom_case(index, pindex, side):
@@ -187,39 +190,44 @@ def top_bottom_case(index, pindex, side):
 # ======================================================================================
 #            =========== SECOND ELIMINATION (THROUGH COMPARISON) ===========
 # ======================================================================================
-# for reference only!
-corners = [
-    (0, 0, 0),
-    (0, 0, 1),
-    (0, 1, 0),
-    (0, 1, 1),
-    (1, 0, 0),
-    (1, 0, 1),
-    (1, 1, 0),
-    (1, 1, 1)]
-
 # this can still be optimized. Break if the previous voxel is inaccessible and then start from the opposite direction
-
 # gegenbeispiel
 # reihenfolge
 # analyzes nonempty voxels in cube_space
 # check if all accessible sides are same color. If no match, then set voxel to 0
+# maybe repeat an iteration for as long as there are changes done in the last iteration? but do a localized search
+# relative to location of the last changed voxel
 def scan_for_no_match(inp):
-    for X, vertical_slice in enumerate(cube_space):
-        for Y, arr in enumerate(vertical_slice):
-            for P, voxel in enumerate(arr):
-                # collect all color data from observable sides
-                if cube_space[X][Y][P][0] == 1:
-                    # if not is_accessible(X, Y, P):
-                    #     break
+    overall_changed = True
+    while overall_changed:
+        overall_changed = False
+        for X, vertical_slice in enumerate(cube_space):
+            for Y, arr in enumerate(vertical_slice):
+                for P, voxel in enumerate(arr):
+                    changed = False
+                    # for each voxel, collect all color data from observable sides
+                    if cube_space[X][Y][P][0] == 1:
+                        cube_space[X][Y][P] = [0, CLEAR] if not is_solid(X, Y, P) else [1, get_true_color(X, Y, P)]
+                        changed = True if cube_space[X][Y][P][0] == 0 else False
+                        overall_changed = overall_changed or changed
+                        if not changed:
+                            reverse_check(X, Y, P)
+                            continue
 
-                    cube_space[X][Y][P] = [0, UNKNOWN] if not is_solid(X,Y,P) else [1, get_true_color(X, Y, P)]
+#                     if state remains to 1, break and reverse iteration (check from opposite direction)
+#                 if change occurs, propagate to nearby neighbors?
 
 
-
-
-def is_accessible(X, Y, P):
-    return True
+def reverse_check(X, Y, P):
+    i = N-1
+    changed = False
+    while i > P:
+        if cube_space[X][Y][i][0] == 1:
+            cube_space[X][Y][i] = [0, CLEAR] if not is_solid(X, Y, i) else [1, get_true_color(X, Y, i)]
+            changed = True if cube_space[X][Y][i][0] == 0 else False
+            if not changed:
+                return
+        i -= 1
 
 
 # given location address of voxel, check if colors match from all viewable sides
@@ -228,7 +236,7 @@ def is_solid(X, Y, P):
     sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
 
     for side in sides:
-        colors.append(get_color(side, X, Y, P).initial) if is_viewable(side, X, Y, P) else nothing()
+        colors.append(get_color(side, X, Y, P).initial) if is_viewable_from(side, X, Y, P) else nothing()
         if len(set(colors)) > 1: # check if more than one color is detected
             return False
     return True
@@ -237,24 +245,11 @@ def is_solid(X, Y, P):
 def get_true_color(X, Y, P):
     sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
     for side in sides:
-        if is_viewable(side, X, Y, P):
+        if is_viewable_from(side, X, Y, P):
             return get_color(side, X, Y, P).hex
 
 
-# def is_solid(X, Y, P):
-#     colors = []
-#     sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
-#
-#     for side in sides:
-#         colors.append(get_color(side, X, Y, P).initial) if is_viewable(side, X, Y, P) else nothing()
-#         if len(set(colors)) > 1: # check if more than one color is detected
-#             return False
-#     return True
-
-
-
-
-def is_viewable(side, X, Y, P):
+def is_viewable_from(side, X, Y, P):
     switch = {
         FRONT: lambda: is_front_back_viewable(X, Y, 0, P),
         BACK: lambda: is_front_back_viewable(X, Y, P+1, N),
@@ -267,9 +262,18 @@ def is_viewable(side, X, Y, P):
     return func()
 
 
+def is_viewable(X, Y, P):
+    sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
+    viewable = False
+    for side in sides:
+        viewable = viewable or is_viewable_from(side, X, Y, P)
+        if viewable:
+            return True
+    return False
+
+
 def nothing():
     pass
-
 
 
 def get_color(side, X, Y, P):
@@ -312,14 +316,4 @@ def is_left_right_viewable(Y, P, start, end):
             break
     return ans
 
-
-def compare_corners():
-    corners_new = corners.copy()
-    for i, t in enumerate(corners_new):
-        corners_new[i] = tuple((N-1) * x for x in t)
-
-    for (X, Y, Z) in corners_new:
-        print(X, Y, Z)
-
-
-
+#

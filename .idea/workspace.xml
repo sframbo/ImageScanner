@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7297b14d-1fe0-4d53-a2d4-2dffb8c83e95" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/eye.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/face.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input2.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input3.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/input3_solution.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Colors.py" beforeDir="false" afterPath="$PROJECT_DIR$/Colors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ImageScanner.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageScanner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InputProcessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/InputProcessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/idea.txt" beforeDir="false" afterPath="$PROJECT_DIR$/idea.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib.py" beforeDir="false" afterPath="$PROJECT_DIR$/lib.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/Plotting.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +40,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="TODO_SCOPE" value="All Places" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/STUDY/5. Sem/DB/Git/db1-ws1920-teammaq-lisa/solution03" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="settings.editor.selected.configurable" value="RSettings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -148,7 +156,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\bam\PycharmProjects\ACM\Plotting.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -178,6 +186,14 @@
       <option name="presentableId" value="Default" />
       <updated>1572345016174</updated>
     </task>
+    <task id="LOCAL-00001" summary="starting separation">
+      <created>1575875631877</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575875631877</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -195,5 +211,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="starting separation" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting separation" />
   </component>
 </project>

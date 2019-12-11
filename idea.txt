@@ -120,12 +120,39 @@ top     0N N ||  bottom  NN Y
 
 front viewable?
 
+# for reference only!
+corners = [
+    (0, 0, 0),
+    (0, 0, 1),
+    (0, 1, 0),
+    (0, 1, 1),
+    (1, 0, 0),
+    (1, 0, 1),
+    (1, 1, 0),
+    (1, 1, 1)]
+
+
+
+# not used. For reference only
+def process_input_o(inp):
+    global N
+    global cube_space
+    N = 3
+    image_input_d = [
+        {"front": ".R.", "left": "YYR", "back": ".Y.", "right": "RYY", "top": ".Y.", "bottom": ".R."},
+        {"front": "GRB", "left": "YGR", "back": "BYG", "right": "RBY", "top": "GYB", "bottom": "GRB"},
+        {"front": ".R.", "left": "YRR", "back": ".Y.", "right": "RRY", "top": ".R.", "bottom": ".Y."}
+    ]
+    cube_space = np.ones((N, N, N))
+    return image_input_d
+
+
 
 
 # ===================== Add up all the cells (trivial) [DONE] ==========================
 
 - Problem beschreibung
-- Limitations
-- Visualisierung vom Cube (suggestion: maybe save color of viewable cubes)
+- Limitations (blind spots, if a voxel is not viewable --> assume it's solid)
+- Visualisierung vom Cube (suggestion: maybe save color of viewable cubes) DONE
 - Problem dargestellt viele Randfaelle
 - Demo

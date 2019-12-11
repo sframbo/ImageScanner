@@ -8,10 +8,10 @@ class Color:
 
 
 AQUA = Color('AQUA', 'A', '#00FFFF')
-BLUE = Color('BLUE', 'B', '#0000FF')
-CHARTREUSE = Color('CHARTREUSE', 'C', '#7FFF00')
-DARKGOLDENROD = Color('DARKGOLDENROD', 'D', '#B8860B')
-EBONY = Color('EBONY', 'E', '#2F4F4F')
+BLUE = Color('BLUE', 'B', '#0000CD')
+CHARTREUSE = Color('CHARTREUSE', 'C', '#EE82EE')
+DARKGOLDENROD = Color('DARKGOLDENROD', 'D', '#ADFF2F')
+EBONY = Color('EBONY', 'E', '#FF4500')
 FUCHSIA = Color('FUCHSIA', 'F', '#FF00FF')
 GREEN = Color('Green', 'G', '#008000')
 HOTPINK = Color('HOTPINK', 'H', '#FF69B4')
@@ -29,13 +29,13 @@ SEASHELL = Color('SEASHELL', 'S', '#FFF5EE')
 TAN = Color('TAN', 'T', '#D2B48C')
 PERU = Color('PERU', 'U', '#CD853F')
 IVORY = Color('IVORY', 'V', '#FFFFF0')
-WHITE = Color('WHITE', 'W', '#ffffff')
+WHITE = Color('WHITE', 'W', '#F5F5F5')
 XRAY = Color('XRAY', 'X', '#2F4F4F')
 YELLOW = Color('Yellow', 'Y', '#FFFF00')
 ZAFFRE = Color('ZAFFRE', 'Z', '#008080')
-CLEAR = Color('CLEAR', '.', '#000000')
 
-UNKNOWN = Color('UNKNOWN', '?', '#000000')
+VOID = Color('VOID', '.', '#000000')
+CLEAR = Color('CLEAR', '?', '#000000')
 
 
 # accepts a  string and returns a color
@@ -68,7 +68,7 @@ def translate_to(str):
         'X' : XRAY,
         'Y' : YELLOW,
         'Z' : ZAFFRE,
-        '.' : CLEAR
+        '.' : VOID
     }
     return switch.get(str, ZAFFRE)
 

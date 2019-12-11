@@ -1,0 +1,678 @@
+1
+. . . . . .
+1
+A A A A A A
+10
+.AAAABAD.C DD.ABABDAA B.DABBABD. ABCBABA.BD ABC.DAEDE. D.BA.EA..A
+DDC.D.D..A CDD.B..DAD B..D.D.CDD DAD..B.DDD .DBD.C.E.. ..EBCBB.BE
+C....AB.EE A..BECB.B. EE.BA....C .E.BCEB..A C..AE.DBAC CB...BCA.A
+BDE.BEC.BA E.EEBEDBEE BB.EBE.EDE EECEABEE.B AA..ECB.C. BDADA...EB
+CB.D.B.BAD BBBCBDBCA. DAA.B.C.BB .ABDDCCBBA BAACB....B EED.A.A.AD
+....D.CEE. D.EC...... .EEC.D.... ......CE.E CEA.A.A.BA BAACB....B
+..ABEC..BA .DA...A.BA CB..CEDA.. AB.A...CC. BDEDA...EB AA..ECC.C.
+B...C....A .....A.ACB A....A...B BCA.A..... BD...BCD.C C..AE.EEAE
+CEB.A..A.E AEE..EAC.B E.E..A.AEC B.AAE..EEA ..EBABB.EA .BBD.C.E..
+DBDB..AEE. ADCAADEBBD .AEE..DAAA ABBEAACADE D.BA.EA..A ABA.DBEEE.
+3
+..D D.. D.. ..D C.D ...
+C.. C.. ..C ..C ... ...
+..A A.. A.. ..A ... C.A
+4
+...D ..D. D... .D.. A... ...D
+A..D A..D D..A D..A .... ...D
+.... .... .... .... ...D ....
+.... .... .... .... ...D A...
+3
+... ... ... ... B.C .B.
+B.C B.. C.B ..C C.. C..
+CB. .CB .BC BC. .B. B.C
+7
+CDB.B.. ...DBC. ..B.BDC .BBD... DED.D.. AC...AC
+....... ....... ....... ....... ..DAB.. CCB..D.
+ACD.A.. DDAC..A ..D.DCA A..CADD AE..AB. ..CAAD.
+.C..BD. .BE..DC .DB..E. CD..EB. DD..C.C DC..C.C
+DCCACEC D.ACC.C CEAACED E.ACA.E ..CABD. AE..AB.
+AC.A..C .AA..CC C..A.CA CC..AA. CCB..D. ..DAB..
+DBC.AA. DBBDC.A .BB.DBD A.DDBBD AC...EC DBD.D..
+5
+.DB.D ..BDD D.BD. DDB.. ..E.D .D..E
+A.E.D E.A.. D.E.A ..A.D BEC.. ....D
+B.EBE .BE.E EBC.B E.BC. A.BB. A.DC.
+.E... .E... ...E. ...E. ....D BEC..
+..DC. ..D.. .CD.. ..C.. .D..E ..E.D
+10
+..B.B.DC.. ..CB.A..EB ..CD.A.B.. BE..A.DC.. ..CE.D.E.D .E.CBBC...
+.CECBA.A.. ....DA.EBC ..A.AACED. CBA.AA.... BADA.A.A.. D.ADB..CDA
+CB....CBE. .B.ACEBB.C .EAA....BB C.BEECA.A. CCA.B..C.. .BEBE.EA.B
+BCDC..E... .DCEB..E.. ...E..CDCE ..E..BCCD. E.BCDBDB.. DC...B.DEA
+D..D.B.D.A DD.D..D.D. A.D.D.D..D .A.A..B.DD CDA.A..... ....BAE.CD
+BAABD..... .AABA..B.. .....BBAAB ..B..ADBA. ....AAE.CB BDA.A.....
+CB.A...E.. EAC.D....B ..E...A.DC B....D.CAE DC...B.BEA B.EDDBAB..
+.CADBBCA.B EC...BCAAB B.CCABEAC. CDBBB...CA .BEBA.EA.B CCA.B..C..
+.EE.B..C.D C.BE....BE D.B..B.CE. EC....BB.D D.ADE..CDA BADA.A.C..
+DB..EA..DD .AB..CDBD. DC..AB..BD .DEDD..BA. .C.CBBC... ..CE.A.E.D
+5
+..C.. ...C. ..C.. .C... ..... A..B.
+D.EB. .E..D .AE.D B..A. ..EA. ..C.D
+A...C ..ACA C...A ACA.. A..E. A..E.
+..... ..... ..... ..... ..C.C ..EA.
+...ED ..ED. DE... .DE.. D..B. .....
+7
+DEA.C.B .CE..DB B.C.AED BD..AC. D.E...B E.B.CEB
+.E.CEAC .ECCE.. CAEC.E. ..ECCA. .E.ACA. DDC.A..
+.B.AE.B BBE.... B.EA.B. ....EAB DEACE.C ...CB..
+E.ECC.B E..BC.E B.BCE.E C.BB..E B..C..B B..C..B
+D.BC... D.C...B ...CB.D B...C.D ...CE.. DBACE.C
+B...A.. ..DB.A. ..A...D .A.BD.. DDC.A.. .B.ACA.
+.DC..E. ..B..DE .E..CB. EC..B.. E.B.CEB D.E...B
+8
+C.CDAB.. CC..D.AC ..BADA.C CA.B..CC CC.C.EA. EAC.B.EB
+.C.C.B.. C..ACB.C ..E.C.C. C.BCA..E C.AE.AE. E.ABD...
+....C.CE ...C.C.. EC.C.... ..E.C... C......D BADDDE.C
+E.ABB.AB ....A.EB BA.BBA.E BB.A.... ....BAC. .C.CACAC
+C.DED.E. .ECB.DDE .E.BED.C EDD.BCE. .C.DABAC ....BAC.
+BAADBCAD AADBCB.. DAABDAAB ..DCBDAA BADDCB.E C......D
+E.D.B.E. .A...DEE .E.B.A.E BED...E. E.ABD... C.AE.AE.
+CA...E.C D.C.CE.A C.E...CD A.CC.C.C ECC.B.EB DC.C.EA.
+4
+.... .... .... .... .... .D..
+.D.. ..D. ..D. .D.. .... CD..
+C... ..C. ...C .C.. CD.. ....
+.D.. ...D ..D. D... .D.. ....
+7
+EEDDE.B E.E.DDE B.EDDEE EDB.E.E .AA.E.. DEBEB..
+D.D.B.. .E...DD ..E.D.D BD...E. C.E.E.. ..AD.C.
+D.AEE.. AED...E ..EEA.D E...DEA E.A..B. .DD..CB
+ADD.... D..AD.. ....DDA ..DA..D A.AE... A.AE...
+CAA..C. ACA.CA. .C..AAC .AC.ACA .DD..CB C.A..B.
+C.A..B. .ECA... .B..E.C ...ABE. ..DD.C. C.E.E..
+..BE.C. ...E.CB .C.EB.. BC.E... DEBEB.. .AD.E..
+9
+E.DEBCA.E ..CEE.BDA E.ACBED.E ADB.EEC.. .E.EEDDC. .E..BAAA.
+.EACBD..E EAABCC.EE D..BEAAC. DE.CABDAE ADA....CB D.E.CB..D
+.EE.AB.EC EB.AA.CEB BE.BA.EE. BEC.AE.BE .CBACCB.D ...DB...C
+BC.A.BB.B C.EBDA.B. E.BC.E.CB .B.BDBE.C EDDEAB.EB DC.ABE.C.
+DAB.CE... CDB.AA.D. ...EC.DAA .C.AA.EDC .A.CAD..E .C.CAD..E
+.D.EBBD.E E..DE..BB B.DDBE.D. BB..EB..D AC.ABC.C. EDDCAB.DB
+D.BDBA.C. .A.B.DD.A .C.ABDB.A A.DC.B.B. ...DB...C .CBECEB.A
+A.DD.E.AA DAAD.E..A AD.E.DD.A A..E.DAAD B.D.CB..E ADB....CB
+.C.CAD.CD CDCCC..D. DC.DAC.D. .D..DACCC .E..BDAA. .C.DCDDC.
+6
+E..DAB B.DE.. BAD..E ..AD.B .AB..B ..E..B
+...B.B .A.B.B A.B... B.B.A. .CE..A ..D.E.
+..BCE. B.C.E. .ECB.. .E.C.B .D.D.. EC.BA.
+..E... .E.... ...E.. ....E. EC.DA. .D.C..
+.D.... .CD... ....C. ...DC. ..D.E. .AE..D
+.CE..D AA.CDE D..DA. EDC.DA ..E..B .AB..B
+8
+..E.C.A. .EA...C. .A.C.E.. .C...AE. B..EA... C.DEAD..
+C.BB.... B..E.BC. ....BB.B .BB.E..B DDE.E... DBD.CDAC
+.CE..DC. ..CE.CDE .CE..EC. EDC.EC.. D..E.EA. DDCBB.BE
+.D.DB..C ...ADDC. C..AD.D. .CBDA... EE..AED. C..B....
+BBDEA... ADDE.BB. ...AEDDD .DB.EEDA C..D.... EE..AED.
+D.DEA.DE EDDD.D.D ED.EED.D A.E.DDEE BCCBB.BE D..D.EC.
+D....DB. ..E..BDD .BE....D DDB..E.. CBB.CDAC DDE.E...
+C.CB.DA. ..D.CCDC .AD.DC.C CACB.D.. C.EEAD.. B..EA...
+2
+.. .. .. .. .. .D
+.D .D D. D. .D ..
+6
+DCAD.. DE..DA ..EECD AD..EE DCEB.A D.A..C
+A.C.DC AC.C.. CD.C.A ..C.DA ..CEDB ...D..
+...B.B BB.... A.B... ....BA A..... B....C
+...D.C D....C C.D... C....D B....C A.....
+D....C .C.B.D C....B C.B.C. ...D.. ..CEDC
+A..... ..A... .....A ...A.. D.A..C ACED.A
+8
+...E...C ..E..... C...E... .....C.. DE...... DCC....E
+.AABB.EC .EAECBA. BE.EBEA. .BBCBEE. .EECD... BA.B..A.
+.CCCEDA. .ECCCDA. .ADCCCE. .ADECCE. B.AEB.EC ..B.BBB.
+....B... ..B..... ...B.... .....B.. B.C.E..B .C..E..B
+.C.BDBBE .D..BBBC BBBDB.C. EBBB..D. .C..E..C B.C.B..B
+DEC.D.BC EE.B.BBD CB.D.BEB CBB.B.DE ..B.BDB. B.ACB.EC
+B....... D.B..... .......D .....B.D BA.B..A. .EECD...
+...CB..E .C.BBB.E B..BC... E.BBB.C. DCC....E DE......
+6
+.AADB. AD.BA. .BDAA. .AB.DA .A.... .ED...
+CE.... AB.CCE ....AC ECC.BA BBCDEB C.AC..
+..DC.C ..C.CD C.CD.. DC.C.. .....C .CCCDA
+.D..E. DE.... .E..D. ....ED .CCCBA .....C
+BECC.A EB.C.. A.CCEB ..A.BE C.AC.. BBCDEB
+..A.DB .C.DA. BD.C.. .AD.B. .ED... .E....
+9
+.D...B..A ..AD.D... A..B...D. ...D.BA.. B.D.E.E.. C.B.....B
+DBE...EED BDDB..DE. EEE...EDB .ED..EDEB .D.B..E.A .B..DE.BC
+..B.D.EBA EAEEBC.DB ABE.E.C.. BD.CBBEAE D..E.BEAA BBD.DCBEC
+..D..CEEC D.A.BCCE. CAEB..D.. .ECCB.A.E DDE.ABEBE CAC.BC..D
+A.E.DA.BE E.AA.EDA. EB.AA.E.A .ADE.BA.A .A..BB... .A..AE...
+CAB.BC.EC ..CCAACC. CC.CC.BAC .CEBACC.. CDC.BC..E DBE.CBEBB
+CBC.DE... D...ACB.C ...ED.CAC C.CCE...D CBB.DCBED D..A.BECA
+DB.E.E.BB .BDD.DBEB BB.E.B.BD BBBD.BEB. .B..DA.EC .D.B..E.A
+BBDA.BB.. ..A...BB. ..BB.ADBB .BB...B.. C.B.....B B.E.D.E..
+3
+B.. .B. ..B .B. E.. ...
+E.. E.. ..E ..E B.. B..
+C.. C.. ..C ..C ... C..
+2
+.. .. .. .. .. ..
+.. .. .. .. .. ..
+4
+BAA. .BAB .AAB AAB. .... B.E.
+D..C .ED. E..D .CE. B..E DE.C
+BE.. ..EB ..EB BE.. DA.C B..E
+..E. ...E .E.. E... B.A. ....
+6
+A..C.. A.A..C ..A..A C..A.A B..AD. .C.B.B
+....B. D..B.. .D.... ..B..D E..A.D A.E...
+.C.B.. .A...C ..A.C. B...A. A..D.. DECCB.
+A..... B..DA. .....B .AD..B DECCB. A..D..
+EECC.D .EDE.. D.DCEE ..CDD. A.E... E..D.D
+..ED.B .D..EB B.DE.. BE..D. .C.C.B B..AD.
+5
+..A.. ..A.. ..A.. ..A.. ..B.. BCEC.
+CCED. B.CDC .DBCC EDC.B ..... ..CDB
+B...E ..E.B E...B B.E.. C.A.E C.A.E
+..CD. ...CD .DC.. DC... ..CDB .....
+C..CB ..CBC BC..C CBC.. BCED. ..B..
+4
+DE.B DEED D.DD BEED .D.D D.AB
+..A. ...A .A.. A... BEB. .EEA
+B..A .BA. A..B .AB. .EEA BEB.
+..E. .BE. .B.. .EB. D.AB .D.D
+8
+.EE....C CBEBBEC. A....BC. .CEBBEAC .CE.B... .B..DE..
+EC..BB.. BDEC.... ..BB..DE ....CEBB .DBB.B.A BB.BBADC
+A.EBB... .E.A..B. ...BBE.A .B..B.E. EE.....B ..EA.DDA
+BEEB.D.A EEB.BAB. B.D.BEEB .BAD.BEE AC..B.AB .B.B.D.C
+.E.A.BAC ...ECAEB EAD.A.E. BEDCE... .B.B.D.B AC..B.AE
+.BE.DA.. E.A...AB ..AD.EA. DA...A.E ..EA.DDA EA.....B
+.B...ED. A..CBD.E .DE...A. E.DBC..A BE.BBADC .EDB.B.A
+.BDBD.D. DD....B. .D.DBDB. .D....BD .B..DB.. .AE.D...
+5
+DA..B .BA.D B..BD B.AB. ..D.. D...B
+A.... ...A. ....A .A... .BA.D AE.CB
+.DDE. D..D. .EDD. .E..D .A... .A...
+.E.DD .D.E. DD.E. .D.D. AD.EB .BA.D
+..ACB .A.C. BCA.. .B.A. D...B ..D..
+4
+C.BE C.BE EB.C EB.C C... D..E
+...E .E.. E... ..E. ...E ..B.
+.... .... .... .... ..B. ...E
+D... ...D ...D D... D..E C...
+6
+..B..D .BD... D..B.. ...DB. A.A..E AC....
+A.B... A..CB. ...C.A .BC..A C.B... C.CC.B
+BCB..B ECB.BB E..BCC CB.DCE ..B..D .CC...
+ACA... A..CCA ...ACC ACC..A .CC... ..B..D
+A.C... A...C. ...C.A .C...A C.BC.B C.B...
+...C.. ....C. ..C... .C.... BC.... A.A..E
+8
+AEADDDB. .A.E.DAA .BADDAEA BAA.E.A. E..A.A.A EA.E.BBA
+EACECB.A EA.C.C.E A.BCBCAE A.E.C.BE A.ABE... A....A.D
+...EB.AD ....EEDA DA.BE... ADBA.... B...D... ..CEBAE.
+.....ACA A......C ACA..... C......A .E..C... ...EBEAC
+B.A.B... .AB.B... ...D.A.B ...B.DA. ...EBEAC .B..C...
+ABAA.EB. AA.BEEAB .EE.AABA BAEEB.AA ..CEDAE. B...D...
+...EE... .E..E..E ...EE... E..E..E. A....A.D A.ABE...
+...AE..C AE..C... C..EA... ...C..EA AA.D.DBA E..A.A.A
+8
+D...E.CE C.DD..BE EC.D...D EB..DE.C AA....C. D.ACA.A.
+B..C.BE. ...EBEBC .EB.C..E CBEBE... .EDD.... B.AEEBD.
+DE.EDB.C ..EEA.BD C.CAE.EE DB.DEC.. DEC.AC.E .D..A.EC
+.AA...A. A..CCB.A .C...CA. A.BCC..A E.BEDAC. A.CCDEE.
+.EDDEE.C .E..EBE. C.EBDDE. .ECE..D. A.CCDBE. E.BEDAC.
+EDA.A... ..EBCDAA ...A.BDE AAACBE.. .D..B.EC DEC.AC.C
+D.CE.... ..D.C.E. ....EC.D .E.C.D.. B.AEBBD. .EDD....
+ACCC.AD. A.CACED. .EA.CCCA .DEEAC.C D.ACE.A. AC....C.
+10
+.E.CDBBE.B C.BBA.E.CE B.EBBDC.C. ED.E.ABB.D EC..D..C.. BABA.BBDDB
+CAB.CCE.B. ...CCC..BA .B.ECC.BBC EB..CCB... A...B.AEDA BE.AC.AEA.
+EB.AB.BA.. EB..A...A. ..CB.BA.BE .B...A..EC ACEC.BB..B .AC..E.DD.
+ADECDB.E.. DCA.D..DEB ..C.DDCEDA BED..D.CCD ...CCEB.BC .C.BDB.ADE
+.CBDDBABE. .ACDAEDBAE .EAABDDAC. EABBBADCA. AAA.AC.AE. C.ED.E.B..
+AA.A..BD.C BABE...A.A C.BE..B.AA D.D...CBAB C.EC.E.B.. ADC.EB.AE.
+.C.BAE.DD. .D..AECE.. .DD.EAB.C. ..DBEA..D. .E.DDB.ADE ...CDEE.BC
+C..CC.A.EA .ACCEC..C. AB.A.CC..C .C..CEBCA. .AB..D.DD. DCEB.BB..B
+B.BDED..AB BDDEADE.BB ED..EBDB.D BA.EDDEDDB BB.CD.BEA. A...B.AEDA
+.EC.DBBAD. .EB.C.DCED .DEBBD.CE. DECD.B.BE. BABA.BEEEB EB..B..B..
+9
+D..CC.E.C .DA.DCCC. A.E.DC..D .CECD.BA. ....ABC.E EBBDAEBEA
+..BCDDAE. AD.DA.C.B .CCDACB.. E.B.AD.CC E..CDD.CA .CAEDEE.C
+.BA...A.E E.D.A...B E.A...AD. B...A.D.E .D..ACA.B CB.A..BED
+AA.D....E ...AA.A.D A....D.AA D.E.AA... DA..D..C. ..ECC....
+D.D.ACBED .ECD..EDA DEBDA.D.E BDD..DCD. D.A.A.ABA D.A.A.ABE
+.C...BAB. B.A.B.AC. .BAB...A. .CA.B.A.B ..ECC.... DA..D..C.
+EB..A..E. .E..A.B.E .E..A..BE E.B.A..E. AA.C..EBE .A..ACA.B
+C.EEDEEC. ...C.ECEE .CEEDCE.C EEAC.C... .CDEDEE.C E..CDD.EA
+DAAC..BEA .CADE.BAA EEB..CAAD AAE.EDAC. EBBDAEBEA ....ABC.E
+8
+.BBAEBDB EDBBABE. BDDEAEB. .BBDBBDE .DE...CD E..CD...
+ECC..AE. ..EA..CE .EA..CCE EA..EE.. A..EBD.. ACE.EE..
+ACE..D.D D..E..A. D.D..CEA .E..D..D E...D.EB ..B..E.A
+EDADBA.. DBEDA... ..ABDCDE ...ADEAC EBCD.AE. B.AA..D.
+..AC.EE. A..E.E.C .CE.CA.. C.E.E..C B.AA..D. EDCD.DD.
+BD..D.DA ..DDBA.. AD.D..DB ..ABDD.. ..B..E.A E...D.EB
+E..ED... .A.E...D ...DE..A D...E.D. ACC.EB.. B..EDA..
+B....EB. BB....E. .BE....B .E....BB E..CD... .DA...BD
+7
+D.E.D.A A.D.CAE A.D.C.D EAD.D.A ACED.EA .DCCDBB
+A..D.AA D.A.A.. AA.D..A ..A.A.A ...AA.. ...B.EE
+ABAAEBE AAABE.B EBEBEBA B.EBEAB DAABE.A .EA.DAE
+.ECCD.E C.ADEEC E.DCCA. CEEDA.C .B..D.D .B..A.D
+.C..DE. C..A.ED .EA..C. DE.A..E .EC.DAE AEABE.A
+.DC...D ..EDA.D D...AE. C.ADE.. ...B.EA ...AA..
+..ABA.B .AB.ABB A.ABA.. BBA.AA. .DECDBB ACCB.EA
+8
+B.C...CB ....BBC. BC...B.B .CBB.... AA.CE.ED ....BA.C
+.E.AD.D. .DE..ADD .D.DA.D. DDA..ED. AD.DD.AC CED...D.
+CC.DB.B. .A.C.DCB .A.CD.CC BCB.C.A. AE..B... BBBBB.BE
+A.D..... ..AA.D.. .....A.A ..D.AA.. .CA.C.AD D.BDC.AD
+A.DBDAAD AA.ADBDA DEAEDB.A ADBDA.DD D.BDC.AB .BA.C.AD
+DB.CC.CC CDD.CB.C CC.CC.DD C.BE.DCC BBDAB.BE DE..B...
+BE.DB.AE BDBBDBE. DA.BE.AB .EEADBDE CEC...C. AD.DD.AC
+......DD D...D... DD...... ...D...D ....DA.C BA.EE.DD
+7
+..E.ADE DAE...E EDA.E.. E...EAD A....DC BCE..BE
+BCEB.DC CBE...C CD.BEEB E...DBC B.CCAEC E..AAA.
+..ECCBC .CA..BE CBDCA.. EB..CC. .EEBCD. ..B.BE.
+E.AAAA. ..A..E. .AAAA.E .A..A.. B..EA.. B..EA..
+D.B.C.. ..EAB.D ..E.B.D D.CAE.. ..B.CE. .EECED.
+B.CE.EE ACCBE.E EE.CC.A E.EECEA E..AAB. B.CCDEC
+BCECBBD ACE.B.B DABCECB B.B.ECD DCE..BE A....AD
+8
+DDE..EBD BDE...EE DAE..BDD BA...DDB .CB..DB. ..BE.EBD
+.BB.E... .BEE.B.. ...E.EB. ..B.EEB. DD.E..C. ..D...A.
+..EEBED. BEBE.E.. .BEBEE.. ..E.DBEB ..EBBE.D ..E..CAA
+..AC.EAA ...AAE.C AAE.CA.. C.AAA... B.E.EBD. C.A.....
+.....DCD DCD..... DCD..... .....DCD C.A..... B.E.ECC.
+BECE.B.D CE.B...C D.B.ECCB D...B.EC ..B..EAA ..EBBE.A
+C.DB...D ..BBC.DD D...BD.B DD.CBB.. ..E...A. DE.A..B.
+..BA.CAA .AAC.C.B ABC.AB.. B.A.CAB. ..CC.EBD .CB..DB.
+9
+..DDDD..A ..E..DD.D A..DDED.. D.DA..E.. .EDCE.CD. BA..D..B.
+D.BCECDB. .BACDE.DD .ADCECB.D BD.EDCAC. DAB.BC..A B.D.BC...
+BA....D.. ....ED..B ..C....EB A..DC.... DBAEBDDAC B..AED..D
+AA...A.DC DACAEA... CD.A...AE ...AEACAD B.CCDAB.A B.DDEAD.A
+..AAB.C.A CAAAC.AB. A.C.CAA.. .BA.CAAAC EEB.C.D.. EEB.D.C..
+B..BECD.C .EDD..BB. C.DEDD..B .CE..DCE. A.DDEAD.A B.CCCAB.C
+BBDADD... CCDBD.AD. ...CECCBD .DA.DCDCE D..AED..D DBBDBDCAC
+D.B.B.... ..B.BCD.. ....B.B.C ..DCB.B.. D.D.BC... DAB.BC..A
+BEB.B.B.D EDBB.BBB. C.C.B.DED .BDB.CCBD DA..D..B. .EDCE.CD.
+7
+.E.CCB. BE..C.. .BBC.E. ..B..CB ....BC. .E.E...
+.C.DD.. ..C.DAD ..DA.C. DAD.C.. .E.C.B. AB.ABB.
+..D..B. ..E.DB. .E..D.. .BD.E.. .C...E. .CD.DDC
+.B.A.D. C...DBA .C.A.B. ABD...C ....... .......
+.C...B. .B..C.. .B...C. ..C..B. .CD.CBC .C...E.
+A..E..C ....CAE C..E..A EAC.... AB.ABB. .E.C.B.
+.E..B.. .....BE ..B..E. EB..... .E.D... ....BC.
+6
+E....A ....E. A....E .A.... ..D..E CB.B..
+.C...E E...EC E...E. CE...E ...AB. EE.EDA
+DBDED. DBD.EB .BEDBD BD.DBD D....E ....E.
+...... ...... ...... ...... ....C. D....E
+C..BCE .AEC.C ECA..C B.CEA. EE.EDA ...AC.
+..C.E. CC.E.. .C.C.. ..E.CC CC.B.. ..C..E
+6
+.....D A.C.D. A..... .D.C.A .....A .B..A.
+CAC.A. ..CACA .A.CAC ACAC.. ..A..C CE...D
+CBB..C ..BBC. C..DBC .CBC.. .BC..C .AB...
+...... ...... ...... ...... .AB... .BD..C
+.BA..C .A...B C..AB. B...C. CE...D ..A..C
+.E.... ....E. ....E. .E.... .B..A. .....A
+8
+ECC.C.DE EADECCC. DD.C.AEE .CCCEDAE EE...E.A ACA.A..A
+..BD...E .AD....B A...DB.. E....DA. B.A.D..A A..ECA.D
+D.C.DA.A AB.D.CA. A.AD.C.B .AC.D.DA E.BDB.DD .CC.B...
+AC.D..CD .DC..CAA DC..D.CA ADC..CD. D....C.E .B.DB.D.
+.CBECE.D EAB.BCEC A.ECEBB. CDCB.BAE .C.DB.D. D....C.E
+E.ADBC.. E.BCD..A ..CBDA.E A..DCB.E .CC.C... E.EDB.CD
+E.E...D. ..E.D... .D...E.E ...D.E.. A..DCA.D B.A.D..A
+....A..A .A..BBCA A..B.... ACBB..A. ACB.A..E EE...E.A
+2
+A. .A .A A. .. A.
+.. .. .. .. A. ..
+4
+.... .... .... .... .B.. ..C.
+..C. ...C .C.. C... B... A..D
+BB.D BBD. D.BB .DBB A..D B...
+A... ..A. ...A .A.. ..C. .B..
+2
+.. .. .. .. B. ..
+B. B. .B .B .. B.
+6
+DE.... .DE... ....ED ...ED. D.AEDE ...B..
+..DD.E A..D.. E.DA.. ..D..E DC.BE. .EA..D
+C..BDD DC..DB DDB..C BD..BD .E.... ..DD.D
+.C...D .C.D.. D...C. ..D.C. ..DD.D .E....
+.EA.E. .E..E. .E.AE. .A..E. .EA..D CC.BE.
+D..E.. D..... ..E..D .....E ...B.. D.AEDE
+3
+..E E.. E.. ..E ..E ...
+B.. .B. ..B .B. B.. B..
+... ... ... ... ... ..E
+2
+.. .. .. .. A. ..
+A. A. .A .A .. A.
+4
+..B. ..B. .B.. .B.. .... .EC.
+D... .D.. ...D ..D. D... ..C.
+B.C. .BCC .C.B CCB. ..B. B...
+.E.. ...E ..E. E... .EC. ....
+10
+..CBCCDC.. C.CCCB..C. ..CDCCBC.. .C..BDCC.C .BCCDECDCE ..B.EAC.EB
+DCB.DDEE.. C.DEE.D.C. ..ECDA.ECD .C.E.EDA.C AD.ECE.BE. .CD.A..C.D
+.BD..AE.AC .EBEDC...A DA.EE..DB. A...CDEBE. DBE.C..BB. C.A.CBEE..
+E..E...D.E DEE...E... E.D...E..E ...E...EED E.C.ADE.A. CCB.DAED.A
+.AD..EDE.B E.A...DADB E.BDE..EA. BDEA...B.E .ADBCCDE.D ..CAD.DEBD
+AA..D.ABEE DAAA.E...E EEBA.D..AA E...E.AAED ..CBB.DABC .ADBCCDE.D
+.ACCBA.ADD .AA.CC..DC DDA.ACCCA. CD..AC.AD. DCB.DAED.E E.E.ADA.A.
+CA.AC.EDBA CD.AAACC.. ACED.AB.DC ..EDBAA.DC C.A.CBEE.. EAE.A..BB.
+C.BCEBCE.. CC.E.CCBAB ..ECBCCC.E CABCE.E.CC .CD.A..C.D BD.EAA.BE.
+CB..AAE.BD BBB.DDAC.. DE.EAA..BB ..CEDD.BEB ..C.EAC.AB .BCCDECDCE
+2
+.. .. .. .. .. ..
+.. .. .. .. .. ..
+6
+..DAA. .DA..A .AAD.. A..AD. D..... ....AD
+C...BD DBB.CD BB...D DC.BBD ..D.B. CEAA..
+D..... D..... .....D .....D ...A.B ......
+....C. .C.... .C.... ....C. ...... ...E.B
+...A.. ..E.A. ..E... .A.E.. CEAA.. ..D.C.
+.EA... ....E. ...AE. .A.... ....AD D.....
+4
+..D. D... .D.. ...D ..D. ..A.
+...B .B.. B... ..B. ...B ....
+.... .... .... .... .... ...D
+..AD .D.A DA.. A.D. ..A. ..D.
+3
+... ... ... ... .A. ...
+... ... ... ... ... ...
+.A. A.. .A. ..A ... .A.
+5
+.B... .B... ...B. ...B. ..B.A ..C.E
+....D AD... A.... ...DA .B..D ....A
+...BE ..BAE EB... EAE.. ...BE ...BE
+..B.. B.... ..B.. ....B ....A .B..D
+..C.. ....C ..C.. C.... ..C.E ..B.A
+7
+D...EDA ..C.D.E ADD...C D.D.A.. A..E... CA..BC.
+D.CEB.. .D.E.DB ..BDC.D BC.E.D. ...D... D.DB.DA
+C..BB.. E.D.B.C ..BE..C B.B.B.E C.CDD.A DB.B.E.
+AAC..EC ..CAB.A CE..CBA A.EAC.. A..ED.. C..ED..
+...E... .B.E... ...B... ...E.B. DB.B.E. C.CDE.C
+..D.EDA ..E..DD ADE.D.. DA..E.. D.CB.DA ...B...
+C..BDC. A..C.BC .DDC..A CD.D..C CA..ED. A..C...
+5
+..D.E E..D. E.D.. .D..E ..E.E ...D.
+..E.. E.... ..E.. ....E AB... ..D.E
+.B... ..B.. ...B. ..B.. .B... .B...
+ABD.C CA.D. C.DBA .D.BC ..D.E AB...
+.B.DE ..BED ED.B. DEB.. ...D. ..E.C
+8
+CA.BB..D ADC...B. D..BB.AC .B...BDA EA.B..E. AA.DC..E
+AC.D.EE. EDAEC... .EB.D.CA ...CEBDE E.CDD..D ..DD.ECD
+.A.BC..E .EDE.A.C E..CB.A. C.B.EDE. CD..BBCD .A.E...A
+.A....A. ..D.A..A .A....D. A..A.D.. ....AE.E .C...AA.
+..CED..E .C...E.E E..DEC.. E.E...D. .C...AA. ....AE.E
+A..D..CE E.C..ADA AC..B..E EDA..C.B .A.B...A AD..BBCB
+EADAA.CB AEBA..D. BC.AADAE .C..ABBA ..DB.ECD E.CDD..B
+...D.E.D ..B.A.ED D.B.D... DD.A.B.. AA.DC..E EA.A..E.
+9
+..BAC.DCC CBC..DA.. CCD.CEB.. ..CD..CEC .B.DCADDC AB.D.C.CD
+B...CDE.. CDEB..... ..EDC...B .....BEDC C.BE.D.A. ...A.DA..
+..AD.A.EE A.DEDA... EE.A.DD.. ...ADED.E ..DDB.ECA CACAC....
+AAD.ED.AD EADA.C.DA CA.DE.DAA DD.C.ADAE BAE....E. DCA...D.D
+.BE...AED DEE..D.AB ADD...EB. BA.D..AED ..D.A.D.. ..D.A.A..
+.CEDA.DC. D.AEAC.DC .CD.BDEC. CD.CDCB.D DCA...D.C CCD....B.
+DA.AA.B.D BCBC.DAA. D.B.BA.BC .AAD.CDCB CACAC.... ..ECB.ECD
+.ADDCDA.. .DCCA.C.A ..ADCCDC. D.C.ADCD. ...D.DA.. C.BA.D.E.
+CBCA.CEB. .AEB..C.B .BEC.ACBC C.C..BEA. AB.D.C.CD .B.DEABDE
+10
+E.BBBE..DD CDD.EBE... DD..EECB.D ...EDE.EDC ..EC..D... B.C.A...BD
+EBA....BDA .EEDABEA.. ADB....ECE ..AEBADBE. ..EA.ACDDD .DA.ADC..D
+B.C.C...EE E.A..DB..C EE...C.E.A E..BE..A.E DC.AE..BDA A.....AE.E
+E.....C.EE ..EDDD.ECE DD.C.....E ECE.DDDD.. A.AABA..DA BDA.AB...D
+DDBA.ADEDD DDDADADEBD DDDDA.ABDD DBEDADADDD E.BBCE.CDD DBE.BA.BAD
+..AAE...BD ...A.CA..E AB...EAC.. B..DC.A... DBC.BD.EAE B.AACE.CCD
+.B.A.DAE.D EAA..B.AD. A.ECA.E.B. .DA.E..ACE EDA.AE...D A.AABA..BA
+B.A.B..BB. ..CA.E..AB .BB..C.A.A BA..B.BC.. A.....AE.A DC.AD..BDA
+A.D.CA.BA. .D.ABA.A.. .AB.AC.D.B ..A.ACA.D. .DB.ADC..D ..AA.ACDDA
+.DAAAB.CCA .AA.A.A.DA ACC.BDAAD. AA.B.C.DA. B.C.C...ED ..EE..D...
+8
+.C.AC..C BA...CCC B..CA.C. CCD...AB BCCE..CB EC..D.BD
+.C.E.CA. CA....C. .AC.E.C. .C....AE ...AEAA. .C..CBD.
+BC.DAAB. BDAD.DCA .DAAD.CB BCD.DADB .....A.. .C.D...D
+EA..CA.D BA.C...E D.AC..AB D...C.AB ...DC.A. .E....D.
+.E...BA. C..AE.B. .CB...E. .B.EA..C .E....D. ...DC.A.
+.C.AC.A. C..A.... .A.CA.C. ....A..C .C.D...D .....A..
+..CDD.D. CE.D..DD .D.EDC.. DD..D.EC .C..CCD. ...CEAD.
+.C.CD.D. .C.CD..C .D.CC.C. D..DC.C. EA..A.BC BCCE..CB
+5
+.C... .C... ...C. ...C. .ABDA A.B.B
+.A..B A...B B..A. B...A .C... .....
+..BC. B.C.B .DB.. B.C.D .CCC. .CCC.
+.C... ..C.. ...C. ..C.. ..... .C...
+A.C.A A.C.A A.C.A A.C.A A.B.B .ABDA
+3
+C.. DAC ..D CAD D.. C..
+... ... ... ... A.. A..
+... ... ... ... C.. D..
+7
+.B.DA.E DA...B. E.AD.B. .E...AD .EEDAB. E.CEE..
+EA.ECA. E..A.AE .BCE.AE EC.A..B CE.BA.E CB.BC.E
+CE.EA.. EC.A.CE ..AC.EC EC.A.CE .C..... ..E.CE.
+.CE.... EEC.... ....EE. ....CEE C...AA. C...AA.
+..CBE.E .E..DBC E.DBC.. EBD..E. ..E.DE. .C.....
+C..B... .B.C... ...B..C ...C.B. CB.CC.E CE.BA.E
+.BE.CE. D...EB. .EA.ED. .BE...A E.CEE.. .DEEAB.
+5
+A.B.. A.B.. ..B.A ..B.A A.... .A..D
+DA..D DA..A A..AD D..AD E...A E.D..
+E.... ...E. ....E .E... ..B.. ..B..
+..... ..... ..... ..... E.D.. E...A
+E.D.. .E.D. ..D.E .D.E. .A..D D....
+8
+.AEC.E.. ..ACEE.. ..E.AEA. ..EECA.. .D....D. E....CB.
+BD.B.A.. D.B..... ..A.B.DB .....A.D B.....A. DCE..B.C
+EEAE.B.E ...BEEBE E.B.BAEE EBEEE... BAAA.A.A EE.D.DA.
+..E...A. .A....E. .A...E.. .E....A. C..CA..E .AAE.C..
+B.....D. ..B..D.. .D.....B ..D..B.. .EEE.C.. C..BB..A
+....AC.. ...A.D.C ..DA.... C.D.A... EE.D.ED. BAAB.A.A
+.C.DBCBA D.ABADCB ADCBD.A. BCDCBA.D DCE..B.C B.....A.
+DEA...AC .BAC.ED. AA...AEB .CA.AAB. E....CB. .D....D.
+4
+B... B... ...B ...B B.DC ....
+..D. D... .D.. ...D .... ....
+.... .... .... .... .... ....
+...C C... C... ...C .... B.DC
+9
+BEBBD.CE. BABB.AE.C .EE.DABEB E.EA.BDAE .BBDDEE.C ....EEAEC
+C...B..EC C.A.C..EB CE..A...C BE..C.A.C DCCAA.D.. EA....CE.
+.AC...A.. CCA...A.. ..A...CC. ..A...ACC BA.EDDAB. DB.CDADA.
+...EE.C.. D.E..E..C ..C.ED... C..A..E.C .E.BE.... ....E.E..
+D....EDE. EDB.DAE.D .BDE....D D.EAE.BDE CC....AE. BC....AE.
+D..EBEC.C E.DE..DCB E.DDEE..D CCD..ED.E ....A.A.. .E.BD....
+.A.CAAAA. .C....BAA .AAAAC.C. AAA....A. DE.CDEDE. DA.EAEEB.
+EE...EE.. ..A..EDE. ..EE...AD .EDE..E.. EA....CE. DCCAE.D..
+BA..EDE.. BDEEB..AE ..EDD..BD EA..CDEED ....BECEC .BCDDDC.E
+5
+ACEE. A..AC .EACA EE..A CEA.A ECE..
+E...C A.C.E A...E E.C.A E..B. C..E.
+CEEB. CE.CE .BEEC EC.BE ....C ....C
+..... ..... ..... ..... A..E. E..B.
+..... ..... ..... ..... ECE.. CEA.A
+2
+.. .. .. .. .. ..
+.. .. .. .. .. ..
+10
+EE.BD...D. D..B..EB.E .D...DE.BE E.DE..E..D ...CDBAA.B DCCBBEC.AC
+D.D.BDD... ...DDD..BB ...BEB.D.D DB..DED... E...E.C.CC D.D.BBBE.A
+BA.B...C.D B....C.B.. B.C...A.CB ..D.C....B .CBD...... EE.B.ACAAD
+E..D....B. .E..B.E..D .B....E..E D..E.B..E. .BDE...DB. EE.EC...C.
+.BAE.ECEAC AC..AA.BEE CAACE.AAB. EEB.AD..CA D.ACCE.DB. DC.E.DBCDA
+.ECEA..EA. C..BEECEAC .BE..CCCE. CAACEEB..C DC.A.DBCAA D.ACCE.EB.
+DA.DECBE.C A.C.CDEDEA A.EACED.CD CADEAC.D.A EE.EC...C. .BDE...DA.
+.C.CBB..E. .E..CEBABC .C..EEC.C. BBABEE..C. BA.B.ACADD .CBD......
+D.DBCB.DA. BE.DC.CEDB .ED.BCBD.E ADEC.CD.EB D.D.ABBE.A E...E.C.EC
+D.B.B.CAD. ..BA.D.CBD .AAC.B.B.D CBA.D.AB.. EACDBED.AC ...CDBAA.B
+9
+A..B.ABBB .BACABAA. BBBC.C..B .ABBABAC. .ACEDE.CA D..D..C.D
+.CDE.D.DA A.EC..AD. AD.D.EDA. .DA..CD.A B....C..A CCEC.D.BE
+BECA..BCD E.B.C.AEB DCB..ECEB BCA.D.B.E AD.EC..D. AD.ECBBCD
+A..DEDCBE E..C.DEAD EBCCEC..A CEED.C..E .C.C.C..B C..CEDB.E
+C.E..BA.D E..E.DCED D.AE..E.C DEDD.E..E ..CDEA..D ..ADEB..A
+E.CBCB.CD C.C.DEB.D AC.BCDC.E D.CEA.C.C E..BEDB.D .C.C.B..B
+DC.CEBB.A .EC.ECBCD A.BBCC.CE DCBCB.CA. AD.AEBABA BD.EC..D.
+.DAEC...E ..D.AED.. E...EEAD. ..CEA.D.. AEDC.D.CE E....C..A
+A...DB... D..B.CA.. ...BD...C ..AC.B..D D..D..B.D .ACEDB.CE
+10
+..ABBCA.DC C...BAB.A. CC.BCBBA.. .C.BDD...C .ADBC.B.CA .B..E...BD
+.B..D.BCB. ...DABB.DB .ABA.B..D. DB.CAAD... .....BA... ...ED.BAAD
+.DA..AA.AA AA.A..ADAA AA.AA..AA. AADA..A.AA .BB.A..ABB BE.BDEA.AC
+EB.E..A... D.BE..AAEB ...A..E.DE BEAA..AB.D EDA..AA..D DAA.BEACA.
+.AAD.BB.A. B.BAAAED.. .B.BE.AAA. ..BEAAAB.B .D.BECA.D. .AAE..BBA.
+DDB.E...BA A.B.D.DC.E AB...C.BDD B.CD.D.B.A .AAC..BBD. .D.AEAE.D.
+A.DBDBB.BB DBAA...D.. BB.BBCBD.A ..B...BBBB DAA.BEACA. ADA..BA..A
+.E...DA.AC ......AEC. CA.AD...E. .CAA...... BD.DCBA.BC .CB.A..ABB
+BE..EEEADD BD.DEE.BA. DDADEE..BB .DC.EDD.DB ...ED.AABC .....BD...
+.A.B.AAAAD ABCAAAAB.D AAAAB.E.A. D.BAEAAABA .B..D...BA .ADBC.A.CB
+7
+A.CCAC. A.AACCC .EACC.A CCEAA.A A..CC.. ..AAEC.
+CA.C..D C.A.D.. D..C.AC ..D.C.C ....BE. ..BC...
+...E... C...E.. ...C... ..E...C AA.C.AC ..EE.BD
+....... ....... ....... ....... ....AD. ....AD.
+..AACD. C..DE.A .DCAE.. A.ED..C ..CE.ED AA.C.AC
+....BB. .BA.B.. .EB.... ..B.AE. ..BC... ....BE.
+..B.E.C E.C..BE C.E.B.. EB..C.E ..AAEC. C..CE..
+4
+.... .... .... .... .... ....
+.... .... .... .... .... ....
+.... .... .... .... .... ....
+.... .... .... .... .... ....
+4
+C... ..AC ...A CA.. .E.. D...
+.E.. E... ..E. ...E ..A. A...
+..A. .A.. .A.. ..A. A... ..A.
+D... ...D ...D D... C... .E..
+6
+CD.ED. .ED..C .DE.DC D..DE. E.DA.E C...DB
+E..A.E A.E... E.A..E ...E.A .C.E.B ...A..
+.....B EB.... E..... ....BE EDACDE A.C...
+.C...B .C...B B...C. B...C. A.C... EDACDE
+A.CA.. ..AAA. ..CA.A .ACC.. ...A.. .C.E.B
+E.D... E..... ...D.E .....D C...DB E.DA.E
+2
+.. .. .. .. .. ..
+.. .. .. .. .. ..
+4
+..D. D... .D.. ...D ..D. ..C.
+CDC. .C.C .CDC C.D. CD.. ....
+.... .... .... .... .... CD..
+.... .... .... .... ..C. ..D.
+2
+.. .. .. .. D. ..
+D. D. .D .D .. D.
+9
+...C..EC. E....BE.C .CB..E... C.EC....E .EAE...BE D.DCC..B.
+AEBBC..CC ED...ABEC CC..DAAEA CEBC...CA BD.BD...C D...E.A..
+DCB.....E EBBC...D. E.....BCB .D...CEBE .EB.E...E EEBB.CEAB
+..D..D.A. ..BD..A.D .A.D..B.. D.A..DB.. ECE..D.AE B..D..DC.
+D.E.EC.AA A.EA..C.D AA.CE.E.D D.C..AE.A ...AD..C. ...AD..C.
+EE.B..ACD D.EEC..AB DCA..B.EE BA..CEE.D A..A..BC. ECE..D.AE
+..E.D...E ..DED.... E...D.D.. ....DED.. EEBB.CEAC .BD.E...E
+.D.C..DBC AD...DC.C CBD..C.A. B.CD...DA D...E.A.. BD.BD...C
+EE.D...CB BBB.ABE.. EB...B.BB ..BCA.EBB D.DCC..B. .AAA...BD
+4
+.CAC ..AC CAC. CA.. ...E DCAA
+D..B EB.D E..D D.BE .D.B ..A.
+.... .... .... .... ..A. .D.B
+.DAA .D.A AAD. A.D. DCAC ...E
+2
+.C .C C. C. .. .C
+.. .. .. .. .C ..
+3
+.A. C.A .C. A.C .CC .A.
+..D CD. C.. .DC ..D ..D
+... ... ... ... .A. .CC
+7
+.D.C... CD..... ...C.D. .....DC ..CC.C. .D..B.A
+..C.... ..C.... ....C.. ....C.. .D.AD.E ....D..
+..C.D.E CE..D.. E.D.C.. ..D..EC ..CAB.. ..E.DA.
+....B.A ..B...A A.B.... A...B.. ....... .......
+...AD.. .A...D. ..DA... .D...A. ..E.DA. ..CAB..
+..EABA. CCA.E.B .CBCE.. B.A.ACC ....D.. .D.CD.E
+.D..D.. .D....D ..D..D. D....D. .D..B.A ..CC.C.
+4
+A.DD .A.. DD.A ..D. B... E...
+B.A. BA.. .A.B ..AB A.DD ....
+E... ...E ...E E... .... A.AD
+.... .... .... .... E... B...
+2
+A. .A .A A. .. A.
+.. .. .. .. A. ..
+3
+B.. ..B ..B B.. ... B..
+... ... ... ... ... ...
+... ... ... ... B.. ...
+6
+.E..B. ..B..E .B..B. B..B.. .B.C.. .E.DBB
+A..C.. C.A... ..C..A ...A.C E.E..D ..C...
+.E..A. B.AE.. .A..B. ..EA.B AB..A. .E...B
+.CE..A .ECA.. D..EC. ..ACD. .E...A AC..A.
+.E.D.B ...E.D B.D.E. B.E... ..C... E.E..D
+E.C.AB .EABC. BA.C.E .CBAE. .E.DBB .B.C..
+6
+....EB ..E.B. EE.... .B.E.. ...C.. E....B
+.A.... ....A. ....A. .A.... .E..C. AA...B
+E..... ....AE .....A EA.... ...DEE ......
+.E.DC. CED... .CC.E. ...DCC ...... ...DEE
+...... ...... ...... ...... AA...B .E..C.
+.....B .....B B..... B..... E....B ...C..
+6
+..DAE. DC..AE .CAD.. EA..CA DCDAB. CE..E.
+AEE.B. DEE.EA .B.ECD AE.EEB .E..C. AE.D..
+CB.... BB...C ....BC C...BB .AE... ..E...
+B.B... ..B.B. ...B.B .B.B.. ..E... .AE...
+.EED.. E.EED. ..DEE. .DEE.E BE.A.. .B..C.
+AE.... ..A.AE ....AA EE.A.. AE..E. DEDAB.
+8
+...B...C B....C.. C...B... ..C....B EA.BA.AB C.....CC
+E.CDB.A. AADD.C.E .A.ADC.D E.B.DDAA EB.A..A. ..A.C.E.
+EACDB.C. EAEDA.CC .B.BAEAE CC.ABBAE DEEDDE.. ..A.A.AC
+E....EEA .EE.A.EA ABE....E AE.A.EB. .BDD..B. .AB...C.
+.ECBB... ABE.C... ...BBCA. ...C.EBB .AC...A. .BDD..B.
+C.A.C.BC A.CB.ACC CA.C.A.A CCA.BC.A ..C.B.AC CEEBBE..
+C.EAD.A. DA..BAEC .C.DAB.C CEAC..AD ..C.C.E. EB.A..B.
+.BABA.DB D.BB.AA. BD.ABAB. .AA.BB.B E.....CA AA.BD.DB
+5
+.A..E E.A.. E..E. ..E.E .EBB. ...D.
+..B.. B.... ..B.. ....B ..... EA...
+.B... ..B.. ...B. ..B.. .A..E .B..D
+.A.B. B..A. .B.A. .A..B EA... .....
+E.BDD B.DED DDB.E DED.B ...D. .EBB.
+9
+....DBEAE B.DDE.EA. EDABD.... .AE.EDD.A E....BA.. .D..DA.A.
+A.ACAA..C .AA..AC.A C..ACCA.A A.CC..AA. AAB.CACEC EAD..D.D.
+EE..CB..C .CB.EE.EB C..BC..EB BE.CE.BC. BAA..ADD. C...A.EEC
+CA..DAB.D ..AB.D.CD D.DAD..AC DC.D.BD.. .D.DD.BD. C.ACC.CAA
+EDB.AE... EB...CAED ...EA.BDC DBAC...BE .E.E...EE .E.E...EE
+CADD...EC ...D.ACA. AE...DDAC .DCA.D... E.ACC.CAD .D.DD.BD.
+CA.E..CA. .A..EC..A .EC..E.AC A..CE..E. C...A.EEC BAA..ADD.
+.....AADA .A...A.DA AAAA..... AD.A...A. CEB..D.A. AAB.DCAEC
+ED..DACE. ED.DEC.DA .ECCD..DE AD.CED.CE .D..AB.A. E....EA..
+10
+C..B.D..C. .DC...C.CB .C..D.C..C BC.C...CD. DC.A..E... .A.BAAE..D
+DADEAAE..D CAE.EDD.EA E..EAAEDCD DE.EDE.EAC C....DAC.C CDEC.BB...
+C.BEBEEAA. E.EEDD.DC. .AAEEBEB.D .CA.ABAE.E C..EAE.E.. A.E.B.EBB.
+D..EEADBCA .C.EEDBD.A ACCDDEE..D A.DCDDA.C. .CAEEE.ADA D.B.BA.BCE
+..E.BBEC.. ..AC.BBEBE ..CEBA.E.. EBEBB.CA.. DEBEBDD.DD ..DDB.DDA.
+A.B..DCBDC DCAEB..B.. CDECE..B.D ..B..DDECC ..DDB.DDA. DEBEBDD.DD
+DDEA..D... AAD.D...D. ...A..AEDD .E...D.DAA D.B.BB.BCE .CAEEA.EDA
+..AE.ADEA. E..AD..A.. .DEDA.EA.. ..A..DE..D D.B.B.EAA. D..ECE.E..
+ACBDAAB.B. C..C.DBA.A .B.CABDBCA A.BAD.C..C CDEC.BE... C....ABC.C
+C...C.B..D .CC.D..EB. D..B.C...C .BE..D.CB. .A.BAAE..D DC.E..C...
+2
+.B .B B. B. E. .B
+E. E. .E .E .B E.
+0
