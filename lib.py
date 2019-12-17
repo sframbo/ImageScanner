@@ -68,7 +68,6 @@ def calculate_weight(n, i, timed=True):
     plot(N, cube_space)
 
 
-
 # sums up all the nonempty voxels in the 3d space
 def print_max_weight():
     total = 0

@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import lib
-from tkinter import PhotoImage
 
 mpl.rcParams['toolbar'] = 'None'
 plt.style.use('dark_background')
@@ -29,7 +28,7 @@ def cuboid_data(pos, size=(1,1,1)):
 
 
 def plot_cube_at(pos=(0, 0, 0), ax=None, c='b'):
-    if ax !=None:
+    if ax is not None:
         X, Y, Z = cuboid_data( pos )
     ax.plot_surface(X, Y, Z, color=c, rstride=1, cstride=1, linewidth=0, antialiased=False, shade=False, alpha=1)
 
@@ -49,7 +48,7 @@ def plot_matrix(ax, matrix):
     for i in range(matrix.shape[0]):
         for j in range(matrix.shape[1]):
             for k in range(matrix.shape[2]):
-                if matrix[i,j,k][0] == 1 and lib.is_viewable(i,j,k):
+                if matrix[i,j,k][0] is 1 and lib.is_viewable(i,j,k):
                     c = matrix[i,j,k][1]
                     plot_cube_at(pos=(i - 0.5, j - 0.5, k - 0.5), ax=ax, c=c)
 
@@ -58,12 +57,20 @@ def plot(N, ma):
     N1 = N
     N2 = N
     N3 = N
-    fig = plt.figure('Object Scanner')
 
-    manager = plt.get_current_fig_manager()
-    # manager.window.wm_geometry("+200+0")
+    fig = plt.figure('Object Scanner')
 
     ax = fig.gca(projection='3d')
     ax.axis('off')
+
     plot_matrix(ax, ma)
-    plt.show()
+
+    for angle in range(0, 360):
+        if not plt.fignum_exists(fig.number):
+            break
+        ax.view_init(angle, angle)
+        plt.draw()
+        # plt.show()
+        plt.pause(.001)
+    plt.close()
+
