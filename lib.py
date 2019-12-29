@@ -1,6 +1,6 @@
 import numpy as np
 from timeit import default_timer as timer
-from Colors import translate_to, VOID, CLEAR
+from Colors import translate_to, VOID, NO_COLOR
 from Sides import FRONT, LEFT, BACK, RIGHT, TOP, BOTTOM
 from Plotting import plot
 
@@ -23,7 +23,7 @@ avg_calc_vol = []
 avg_all = []
 
 
-def calculate_weight(_n, _i, _timed=True, _plt=True):
+def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
     global N
     global cube_space
     global object_data
@@ -40,63 +40,100 @@ def calculate_weight(_n, _i, _timed=True, _plt=True):
     start = timer()
     initialize_cube_space(N)
     end = timer()
-    length = end - start
-    if _timed:
-        print("######################### RUN TIME ANALYSIS #########################")
-        print("Cubic dimension: {}x{}x{}".format(N, N, N))
+    length_1 = end - start
 
-        print("Initialize cube elapse time: {0:.3f} ms".format(length*1000))
-    runtime += length
-    avg_cube_init.append(length/N)
+    runtime += length_1
+    avg_cube_init.append(length_1/N)
 
     object_data = _i
 
     start = timer()
     is_empty_space = scan_for_see_through(_i)
     end = timer()
-    length = end - start
-    if _timed:
-        print("Scanning for void pixels: {0:.3f} ms".format(length*1000))
-    runtime += length
-    avg_elim_1.append(length/N)
+    length_2 = end - start
+    runtime += length_2
+    avg_elim_1.append(length_2/N)
 
     start = timer()
     if not is_empty_space:
         scan_for_no_match(_i)
     end = timer()
-    length = end - start
-    if _timed:
-        print("Scanning for match violations: {0:.3f} ms".format(length*1000))
-    runtime += length
-    avg_elim_2.append(length/N)
+    length_3 = end - start
+    runtime += length_3
+    avg_elim_2.append(length_3/N)
 
     start = timer()
     print_max_weight()
     end = timer()
-    length = end - start
-
-    if _timed:
-        print("Calculating cubic volume: {0:.3f} ms".format(length*1000))
-        print("##########################       END        #########################")
-    runtime += length
-    avg_calc_vol.append(length/N)
+    length_4 = end - start
+    runtime += length_4
+    avg_calc_vol.append(length_4/N)
 
     avg_all.append(runtime/N)
-    print("Runtime: {0:.3f} ms".format(runtime*1000))
     # print(cube_space)
+
+    if _timed and _compare:
+        runtime_s = 0
+        start = timer()
+        initialize_cube_space(N)
+        end = timer()
+        length_s1 = end - start
+        runtime_s += length_s1
+
+        object_data = _i
+
+        start = timer()
+        scan_for_see_through_slow(_i)
+        end = timer()
+        length_s2 = end - start
+        runtime_s += length_s2
+
+        start = timer()
+        scan_for_no_match_slow(_i)
+        end = timer()
+        length_s3 = end - start
+        runtime_s += length_s3
+
+        start = timer()
+        print_max_weight(False)
+        end = timer()
+        length_s4 = end - start
+        runtime_s += length_s4
+
+        print("☻ ---------- ANALYZING RUNTIME _ OPTIMIZED vs NAIVE ---------- ☻")
+        print("Cubic dimension: {}x{}x{}".format(N, N, N))
+        print("Initialize cube elapse time: {0:.3f} ms vs {1:.3f} ms".format(length_1 * 1000, length_s1 * 1000))
+        print("Scanning for void pixels: {0:.3f} ms vs {1:.3f} ms".format(length_2 * 1000, length_s2 * 1000))
+        print("Scanning for match violations: {0:.3f} ms vs {1:.3f} ms".format(length_3 * 1000, length_s3 * 1000))
+        print("Calculating cubic volume: {0:.3f} ms vs {1:.3f} ms".format(length_4 * 1000, length_s4 * 1000))
+
+        print("Runtime: {0:.3f} ms vs {1:.3f} ms".format(runtime * 1000, runtime_s * 1000))
+        print("Optimized version is {0:.3f} times faster than naive version.".format(runtime/runtime_s))
+        print("------------------------------ ✂ ------------------------------")
+
+    elif _timed:
+        print("☻ -------- ANALYZING RUNTIME -------- ☻")
+        print("Cubic dimension: {}x{}x{}".format(N, N, N))
+        print("Initialize cube elapse time: {0:.3f} ms".format(length_1 * 1000))
+        print("Scanning for void pixels: {0:.3f} ms".format(length_2 * 1000))
+        print("Scanning for match violations: {0:.3f} ms".format(length_3 * 1000))
+        print("Calculating cubic volume: {0:.3f} ms".format(length_4 * 1000))
+        print("Runtime: {0:.3f} ms".format(runtime * 1000))
+        print("----------------- ✂ -----------------")
 
     if _plt:
         plot(N, cube_space)
 
 
 # sums up all the nonempty voxels in the 3d space
-def print_max_weight():
+def print_max_weight(_print=True):
     total = 0
     for x in range(cube_space.shape[0]):
         for y in range(cube_space.shape[1]):
             for z in range(cube_space.shape[2]):
                 total = total + cube_space[x,y,z][0]
-    print("Maximum Weight: " + str(total) + " gram(s)")
+    if _print:
+        print("Maximum Weight: " + str(total) + " gram(s)")
 
 
 def initialize_cube_space(N, w=1):
@@ -164,21 +201,31 @@ def process_line(line):
 #            =========== FIRST ELIMINATION ===========
 # ===================================================================
 # Image input here is an array of slices in the form of dictionaries. Each dictionary containing pixel info on each side
-# Locating the pixel marked with "." and delete all affected voxels
 def scan_for_see_through(image_input):
+    # initial check if the whole object is see through. Breaks and returns if nontransparent pixel is detected
     if is_empty(image_input):
-        initialize_cube_space(N, 0)
+        initialize_cube_space(N, _EMPTY)
         return True
-
+    # Locating the pixel marked with "." and delete all affected voxels
     for index, horizontal_slice in enumerate(image_input):
         for side, pixels in horizontal_slice.items():
             for pindex, pixel in enumerate(pixels):
                 if pixel == VOID:
                     delete_nonexistent_voxels(index, side, pindex)
-
     return False
 
 
+def scan_for_see_through_slow(image_input):
+    # Locating the pixel marked with "." and delete all affected voxels
+    for index, horizontal_slice in enumerate(image_input):
+        for side, pixels in horizontal_slice.items():
+            for pindex, pixel in enumerate(pixels):
+                if pixel == VOID:
+                    delete_nonexistent_voxels(index, side, pindex)
+    return False
+
+
+# check only the front side if whole object is transparent
 def is_empty(image_input):
     for d in image_input:
         for p in d["front"]:
@@ -187,6 +234,7 @@ def is_empty(image_input):
     return True
 
 
+# delete all neighboring voxel from a given side + address
 def delete_nonexistent_voxels(index, side, pindex):
     switch = {
         FRONT:  lambda: front_back_case(index, pindex, FRONT),
@@ -200,23 +248,26 @@ def delete_nonexistent_voxels(index, side, pindex):
     return func()
 
 
+_offset = -1
+
+
 def front_back_case(index, pindex, side):
     global cube_space
-    pindex = N - pindex -1 if side == BACK else pindex
+    pindex = N - pindex + _offset if side == BACK else pindex
     for p in range(N):
         cube_space[pindex][index][p][0] = 0
 
 
 def right_left_case(index, pindex, side):
     global cube_space
-    pindex = N - pindex -1 if side == LEFT else pindex
+    pindex = N - pindex + _offset if side == LEFT else pindex
     for p in range(N):
         cube_space[p][index][pindex][0] = 0
 
 
 def top_bottom_case(index, pindex, side):
     global cube_space
-    index = N - index - 1 if side == TOP else index
+    index = N - index + _offset if side == TOP else index
     for p in range(N):
         cube_space[pindex][p][index][0] = 0
 
@@ -224,13 +275,12 @@ def top_bottom_case(index, pindex, side):
 # ======================================================================================
 #            =========== SECOND ELIMINATION (THROUGH COMPARISON) ===========
 # ======================================================================================
-# this can still be optimized. Break if the previous voxel is inaccessible and then start from the opposite direction
-# gegenbeispiel
-# reihenfolge
-# analyzes nonempty voxels in cube_space
-# check if all accessible sides are same color. If no match, then set voxel to 0
-# maybe repeat an iteration for as long as there are changes done in the last iteration? but do a localized search
-# relative to location of the last changed voxel
+# this area is only executed when conceived space is detected as non-empty
+
+_EMPTY = 0
+_SOLID = 1
+
+
 def scan_for_no_match(inp):
     overall_changed = True
     while overall_changed:
@@ -238,24 +288,32 @@ def scan_for_no_match(inp):
         for X, vertical_slice in enumerate(cube_space):
             for Y, arr in enumerate(vertical_slice):
                 for P, voxel in enumerate(arr):
-                    changed = False
                     # for each voxel, collect all color data from observable sides
-                    if cube_space[X][Y][P][0] == 1:
-                        cube_space[X][Y][P] = [0, CLEAR] if not is_solid(X, Y, P) else [1, get_true_color(X, Y, P)]
-                        changed = True if cube_space[X][Y][P][0] == 0 else False
+                    if cube_space[X][Y][P][0] == _SOLID:
+                        cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID, get_true_color(X, Y, P)]
+                        changed = True if cube_space[X][Y][P][0] == _EMPTY else False
                         overall_changed = overall_changed or changed
                         if not changed:
                             reverse_check(X, Y, P)
                             continue
 
 
+def scan_for_no_match_slow(inp):
+    for X, vertical_slice in enumerate(cube_space):
+        for Y, arr in enumerate(vertical_slice):
+            for P, voxel in enumerate(arr):
+                # for each voxel, collect all color data from observable sides
+                if cube_space[X][Y][P][0] == _SOLID:
+                    cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+                                                                                            get_true_color(X, Y, P)]
+
+
 def reverse_check(X, Y, P):
     i = N-1
-    changed = False
     while i > P:
-        if cube_space[X][Y][i][0] == 1:
-            cube_space[X][Y][i] = [0, CLEAR] if not is_solid(X, Y, i) else [1, get_true_color(X, Y, i)]
-            changed = True if cube_space[X][Y][i][0] == 0 else False
+        if cube_space[X][Y][i][0] == _SOLID:
+            cube_space[X][Y][i] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, i) else [_SOLID, get_true_color(X, Y, i)]
+            changed = True if cube_space[X][Y][i][0] == _EMPTY else False
             if not changed:
                 return
         i -= 1
@@ -267,7 +325,7 @@ def is_solid(X, Y, P):
     sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
 
     for side in sides:
-        colors.append(get_color(side, X, Y, P).initial) if is_viewable_from(side, X, Y, P) else nothing()
+        colors.append(get_color(side, X, Y, P).initial) if is_viewable_from(side, X, Y, P) else ...
         if len(set(colors)) > 1: # check if more than one color is detected
             return False
     return True
@@ -278,6 +336,16 @@ def get_true_color(X, Y, P):
     for side in sides:
         if is_viewable_from(side, X, Y, P):
             return get_color(side, X, Y, P).hex
+
+
+def is_viewable(X, Y, P):
+    sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
+    viewable = False
+    for side in sides:
+        viewable = viewable or is_viewable_from(side, X, Y, P)
+        if viewable:
+            return True
+    return False
 
 
 def is_viewable_from(side, X, Y, P):
@@ -291,16 +359,6 @@ def is_viewable_from(side, X, Y, P):
     }
     func = switch.get(side, lambda: "invalid")
     return func()
-
-
-def is_viewable(X, Y, P):
-    sides = [TOP, BOTTOM, FRONT, BACK, LEFT, RIGHT]
-    viewable = False
-    for side in sides:
-        viewable = viewable or is_viewable_from(side, X, Y, P)
-        if viewable:
-            return True
-    return False
 
 
 def nothing():
@@ -346,5 +404,3 @@ def is_left_right_viewable(Y, P, start, end):
             ans = False
             break
     return ans
-
-#

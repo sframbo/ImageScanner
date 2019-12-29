@@ -35,7 +35,7 @@ YELLOW = Color('Yellow', 'Y', '#FFFF00')
 ZAFFRE = Color('ZAFFRE', 'Z', '#008080')
 
 VOID = Color('VOID', '.', '#000000')
-CLEAR = Color('CLEAR', '?', '#000000')
+NO_COLOR = Color('CLEAR', '?', '#000000')
 
 
 # accepts a  string and returns a color

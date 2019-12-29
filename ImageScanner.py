@@ -2,7 +2,7 @@
 from lib import process_input, calculate_weight, avg_all, avg_calc_vol, avg_elim_2, avg_elim_1, avg_cube_init
 
 
-def image_scanner(interact=False, rotate=True, data="input.txt", timed=True, plot_=True):
+def image_scanner(interact=False, rotate=True, data="input.txt", timed=True, plot_=True, compared=False):
     if interact:
         print("Please enter input file location.")
         i = input()
@@ -20,7 +20,7 @@ def image_scanner(interact=False, rotate=True, data="input.txt", timed=True, plo
 
     # calculate the weight for each object in the file
     for (n, i) in image_input:
-        calculate_weight(n, i, timed, plot_)
+        calculate_weight(n, i, timed, plot_, _compare=compared)
         print()
 
     cube_init_avg = sum(avg_cube_init)/len(avg_cube_init)
@@ -39,4 +39,4 @@ def image_scanner(interact=False, rotate=True, data="input.txt", timed=True, plo
     print('Overall: {0:.3f} ms'.format(overall_avg*1000))
 
 
-image_scanner(data="input3.txt", timed=True, plot_=True)
+
