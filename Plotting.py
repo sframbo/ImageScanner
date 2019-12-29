@@ -54,23 +54,20 @@ def plot_matrix(ax, matrix):
 
 
 def plot(N, ma):
-    N1 = N
-    N2 = N
-    N3 = N
-
     fig = plt.figure('Object Scanner')
 
     ax = fig.gca(projection='3d')
     ax.axis('off')
-
+    # ax.text(0, 0, 0, "blah", fontsize=12)
+    # ax.set(xlim=(0,N), ylim=(0,N), zlim=(0,N))
     plot_matrix(ax, ma)
 
-    for angle in range(0, 360):
-        if not plt.fignum_exists(fig.number):
-            break
-        ax.view_init(angle, angle)
-        plt.draw()
-        # plt.show()
-        plt.pause(.001)
-    plt.close()
+    while plt.fignum_exists(fig.number):
+        for angle in range(0, 360):
+            if not plt.fignum_exists(fig.number):
+                break
+            ax.view_init(30, angle)
+            plt.draw()
+            plt.pause(.001)
 
+        plt.close()

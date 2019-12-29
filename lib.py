@@ -8,64 +8,85 @@ from Plotting import plot
 # - create data type for color and transparent -- DONE
 # - find a way to visually recreate the cube after algorithm -- DONE
 # - add extra algorithm of checking if voxel is viewable and if not, then check from the opposite side. If at some point
-#       a voxel is not viewable, assume the rest as not viewable . . R - - - L
+#       a voxel is not viewable, assume the rest as not viewable . . R - - - L -- DONE
 
 
 # this represents the 3-dimensional space containing the object
 # each matrix represents a vertical slice of the space with the viewer observing it from the left of the container
-cube_space = [] # save color
+cube_space = []
 N = 0   # dimension
 object_data = []    # image data of current object being processed
+avg_cube_init = []
+avg_elim_1 = []
+avg_elim_2 = []
+avg_calc_vol = []
+avg_all = []
 
 
-def calculate_weight(n, i, timed=True):
+def calculate_weight(_n, _i, _timed=True, _plt=True):
     global N
     global cube_space
     global object_data
+    global avg_all
+    global avg_calc_vol
+    global avg_cube_init
+    global avg_elim_1
+    global avg_elim_2
+
     runtime = 0
-    N = n
+    N = _n
     print("N changed to " + str(N))
 
     start = timer()
     initialize_cube_space(N)
     end = timer()
-    if timed:
-        print("#####################################################################")
+    length = end - start
+    if _timed:
         print("######################### RUN TIME ANALYSIS #########################")
-        print("#####################################################################")
         print("Cubic dimension: {}x{}x{}".format(N, N, N))
 
-        print("Initialize cube elapse time: {} seconds".format(end - start))
-    runtime += end-start
-    object_data = i
+        print("Initialize cube elapse time: {0:.3f} ms".format(length*1000))
+    runtime += length
+    avg_cube_init.append(length/N)
+
+    object_data = _i
 
     start = timer()
-    scan_for_see_through(i)
+    is_empty_space = scan_for_see_through(_i)
     end = timer()
-    if timed:
-        print("Scanning for void pixels: {} seconds".format(end - start))
-    runtime += end-start
+    length = end - start
+    if _timed:
+        print("Scanning for void pixels: {0:.3f} ms".format(length*1000))
+    runtime += length
+    avg_elim_1.append(length/N)
 
     start = timer()
-    scan_for_no_match(i)
+    if not is_empty_space:
+        scan_for_no_match(_i)
     end = timer()
-    if timed:
-        print("Scanning for match violations: {} seconds".format(end - start))
-    runtime += end - start
+    length = end - start
+    if _timed:
+        print("Scanning for match violations: {0:.3f} ms".format(length*1000))
+    runtime += length
+    avg_elim_2.append(length/N)
 
     start = timer()
     print_max_weight()
     end = timer()
-    if timed:
-        print("Calculating cubic volume: {} seconds".format(end - start))
-        print("#####################################################################")
-        print("##########################       END        #########################")
-        print("#####################################################################")
-    runtime += end - start
+    length = end - start
 
-    print("Runtime: {}".format(runtime))
+    if _timed:
+        print("Calculating cubic volume: {0:.3f} ms".format(length*1000))
+        print("##########################       END        #########################")
+    runtime += length
+    avg_calc_vol.append(length/N)
+
+    avg_all.append(runtime/N)
+    print("Runtime: {0:.3f} ms".format(runtime*1000))
     # print(cube_space)
-    plot(N, cube_space)
+
+    if _plt:
+        plot(N, cube_space)
 
 
 # sums up all the nonempty voxels in the 3d space
@@ -78,13 +99,13 @@ def print_max_weight():
     print("Maximum Weight: " + str(total) + " gram(s)")
 
 
-def initialize_cube_space(N):
+def initialize_cube_space(N, w=1):
     global cube_space
     cube_space = np.empty((N,N,N), dtype=object)
     for a in range(cube_space.shape[0]):
         for b in range(cube_space.shape[1]):
             for c in range(cube_space.shape[2]):
-                cube_space[a, b, c] = [1, "r"]
+                cube_space[a, b, c] = [w, "r"]
 
 
 # ===================================================================
@@ -145,11 +166,25 @@ def process_line(line):
 # Image input here is an array of slices in the form of dictionaries. Each dictionary containing pixel info on each side
 # Locating the pixel marked with "." and delete all affected voxels
 def scan_for_see_through(image_input):
+    if is_empty(image_input):
+        initialize_cube_space(N, 0)
+        return True
+
     for index, horizontal_slice in enumerate(image_input):
         for side, pixels in horizontal_slice.items():
             for pindex, pixel in enumerate(pixels):
                 if pixel == VOID:
                     delete_nonexistent_voxels(index, side, pindex)
+
+    return False
+
+
+def is_empty(image_input):
+    for d in image_input:
+        for p in d["front"]:
+            if p is not VOID:
+                return False
+    return True
 
 
 def delete_nonexistent_voxels(index, side, pindex):
@@ -212,9 +247,6 @@ def scan_for_no_match(inp):
                         if not changed:
                             reverse_check(X, Y, P)
                             continue
-
-#                     if state remains to 1, break and reverse iteration (check from opposite direction)
-#                 if change occurs, propagate to nearby neighbors?
 
 
 def reverse_check(X, Y, P):
