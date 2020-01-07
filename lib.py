@@ -3,6 +3,7 @@ from timeit import default_timer as timer
 from Colors import translate_to, VOID, NO_COLOR
 from Sides import FRONT, LEFT, BACK, RIGHT, TOP, BOTTOM
 from Plotting import plot
+import random
 
 # TO DO:
 # - create data type for color and transparent -- DONE
@@ -22,6 +23,12 @@ avg_elim_2 = []
 avg_calc_vol = []
 avg_all = []
 
+avg_cube_init_s = []
+avg_elim_1_s = []
+avg_elim_2_s = []
+avg_calc_vol_s = []
+avg_all_s = []
+
 
 def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
     global N
@@ -35,7 +42,7 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
 
     runtime = 0
     N = _n
-    print("N changed to " + str(N))
+    # print("N changed to " + str(N))
 
     start = timer()
     initialize_cube_space(N)
@@ -63,7 +70,7 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
     avg_elim_2.append(length_3/N)
 
     start = timer()
-    print_max_weight()
+    print_max_weight(_empty=is_empty_space)
     end = timer()
     length_4 = end - start
     runtime += length_4
@@ -79,6 +86,7 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
         end = timer()
         length_s1 = end - start
         runtime_s += length_s1
+        avg_cube_init_s.append(length_s1 / N)
 
         object_data = _i
 
@@ -87,18 +95,23 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
         end = timer()
         length_s2 = end - start
         runtime_s += length_s2
+        avg_elim_1_s.append(length_s2 / N)
 
         start = timer()
         scan_for_no_match_slow(_i)
         end = timer()
         length_s3 = end - start
         runtime_s += length_s3
+        avg_elim_2_s.append(length_s3 / N)
 
         start = timer()
-        print_max_weight(False)
+        print_max_weight(True)
         end = timer()
         length_s4 = end - start
         runtime_s += length_s4
+        avg_calc_vol_s.append(length_s4 / N)
+
+        avg_all_s.append(runtime_s / N)
 
         print("☻ ---------- ANALYZING RUNTIME _ OPTIMIZED vs NAIVE ---------- ☻")
         print("Cubic dimension: {}x{}x{}".format(N, N, N))
@@ -126,14 +139,15 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
 
 
 # sums up all the nonempty voxels in the 3d space
-def print_max_weight(_print=True):
+def print_max_weight(_print=True, _empty=False):
     total = 0
-    for x in range(cube_space.shape[0]):
-        for y in range(cube_space.shape[1]):
-            for z in range(cube_space.shape[2]):
-                total = total + cube_space[x,y,z][0]
+    if not _empty:
+        for x in range(cube_space.shape[0]):
+            for y in range(cube_space.shape[1]):
+                for z in range(cube_space.shape[2]):
+                    total = total + cube_space[x,y,z][0]
     if _print:
-        print("Maximum Weight: " + str(total) + " gram(s)")
+        print("Maximum weight: " + str(total) + " gram(s)")
 
 
 def initialize_cube_space(N, w=1):
@@ -201,20 +215,26 @@ def process_line(line):
 #            =========== FIRST ELIMINATION ===========
 # ===================================================================
 # Image input here is an array of slices in the form of dictionaries. Each dictionary containing pixel info on each side
+# NOTE: I
 def scan_for_see_through(image_input):
     # initial check if the whole object is see through. Breaks and returns if nontransparent pixel is detected
-    if is_empty(image_input):
-        initialize_cube_space(N, _EMPTY)
-        return True
+    # if is_empty(image_input):
+    #     initialize_cube_space(N, _EMPTY)
+    #     return True
     # Locating the pixel marked with "." and delete all affected voxels
+    redundant_sides = [BACK, LEFT, BOTTOM]
     for index, horizontal_slice in enumerate(image_input):
         for side, pixels in horizontal_slice.items():
+            if side in redundant_sides:
+                continue
             for pindex, pixel in enumerate(pixels):
+                # print("checking {} {} {}".format(index, side, pindex))
                 if pixel == VOID:
                     delete_nonexistent_voxels(index, side, pindex)
     return False
 
 
+# no break conditions
 def scan_for_see_through_slow(image_input):
     # Locating the pixel marked with "." and delete all affected voxels
     for index, horizontal_slice in enumerate(image_input):
@@ -226,6 +246,14 @@ def scan_for_see_through_slow(image_input):
 
 
 # check only the front side if whole object is transparent
+def is_empty_(image_input):
+    y = random.randint(0, N)
+    x = random.randint(0, N)
+
+    # image_input[x]['front'][y] =
+    return True
+
+
 def is_empty(image_input):
     for d in image_input:
         for p in d["front"]:
@@ -276,7 +304,6 @@ def top_bottom_case(index, pindex, side):
 #            =========== SECOND ELIMINATION (THROUGH COMPARISON) ===========
 # ======================================================================================
 # this area is only executed when conceived space is detected as non-empty
-
 _EMPTY = 0
 _SOLID = 1
 
@@ -290,7 +317,8 @@ def scan_for_no_match(inp):
                 for P, voxel in enumerate(arr):
                     # for each voxel, collect all color data from observable sides
                     if cube_space[X][Y][P][0] == _SOLID:
-                        cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID, get_true_color(X, Y, P)]
+                        cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+                                                                                                get_true_color(X, Y, P)]
                         changed = True if cube_space[X][Y][P][0] == _EMPTY else False
                         overall_changed = overall_changed or changed
                         if not changed:
@@ -299,24 +327,32 @@ def scan_for_no_match(inp):
 
 
 def scan_for_no_match_slow(inp):
-    for X, vertical_slice in enumerate(cube_space):
-        for Y, arr in enumerate(vertical_slice):
-            for P, voxel in enumerate(arr):
-                # for each voxel, collect all color data from observable sides
-                if cube_space[X][Y][P][0] == _SOLID:
-                    cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
-                                                                                            get_true_color(X, Y, P)]
+    overall_changed = True
+    while overall_changed:
+        overall_changed = False
+        for X, vertical_slice in enumerate(cube_space):
+            for Y, arr in enumerate(vertical_slice):
+                for P, voxel in enumerate(arr):
+                    # for each voxel, collect all color data from observable sides
+                    if cube_space[X][Y][P][0] == _SOLID:
+                        cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+                                                                                                get_true_color(X, Y, P)]
+                        changed = True if cube_space[X][Y][P][0] == _EMPTY else False
+                        overall_changed = overall_changed or changed
 
 
 def reverse_check(X, Y, P):
+    # print("doing reverse check")
     i = N-1
     while i > P:
+        print ("i = {}".format(i))
         if cube_space[X][Y][i][0] == _SOLID:
             cube_space[X][Y][i] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, i) else [_SOLID, get_true_color(X, Y, i)]
             changed = True if cube_space[X][Y][i][0] == _EMPTY else False
             if not changed:
+                print("not changed. returning")
                 return
-        i -= 1
+        i = i - 1
 
 
 # given location address of voxel, check if colors match from all viewable sides
