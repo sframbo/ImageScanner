@@ -7,5 +7,5 @@ from ImageScanner import image_scanner
 # 5. Param: plot_=True
 
 
-image_scanner(data="input3.txt", plot_=False, compared=True)
+image_scanner(data="input3.txt", plot_=False, compared=True, timed=True)
 

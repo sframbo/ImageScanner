@@ -1,0 +1,10 @@
+8
+...B...C B....C.. C...B... ..C....B EA.BA.AB C.....CC
+E.CDB.A. AADD.C.E .A.ADC.D E.B.DDAA EB.A..A. ..A.C.E.
+EACDB.C. EAEDA.CC .B.BAEAE CC.ABBAE DEEDDE.. ..A.A.AC
+E....EEA .EE.A.EA ABE....E AE.A.EB. .BDD..B. .AB...C.
+.ECBB... ABE.C... ...BBCA. ...C.EBB .AC...A. .BDD..B.
+C.A.C.BC A.CB.ACC CA.C.A.A CCA.BC.A ..C.B.AC CEEBBE..
+C.EAD.A. DA..BAEC .C.DAB.C CEAC..AD ..C.C.E. EB.A..B.
+.BABA.DB D.BB.AA. BD.ABAB. .AA.BB.B E.....CA AA.BD.DB
+0

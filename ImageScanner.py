@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from lib import process_input, calculate_weight, avg_all, avg_calc_vol, avg_elim_2, avg_elim_1, avg_cube_init
-from lib import  avg_cube_init_s, avg_elim_1_s, avg_elim_2_s, avg_calc_vol_s, avg_all_s
+from lib import  avg_cube_init_s, avg_elim_1_s, avg_elim_2_s, avg_calc_vol_s, avg_all_s, all_while_loops
 
 
 def image_scanner(interact=False, rotate=True, data="input.txt", timed=True, plot_=True, compared=False):
@@ -36,15 +36,18 @@ def image_scanner(interact=False, rotate=True, data="input.txt", timed=True, plo
         elim2_avg = sum(avg_elim_2) / len(avg_elim_2)
         calc_vol_avg = sum(avg_calc_vol) / len(avg_calc_vol)
         overall_avg = sum(avg_all) / len(avg_all)
+        while_avg = sum(all_while_loops) / len(all_while_loops)
 
         print()
-        print("---------- Average Time Analysis - Optimized vs Naive -----------")
+        print("---------- Average Time Analysis (per N) - Optimized vs Naive -----------")
         print('Analyzed: {} objects'.format(len(avg_cube_init)))
-        print('Cube Initialization: {0:.3f} ms vs {1:.3f} ms'.format(cube_init_avg * 1000, cube_init_avg_s*1000))
+        print('Cube Initialization: {0:.3f} ms'.format((cube_init_avg + cube_init_avg_s)*1000/2))
         print('Check for void pixels: {0:.3f} ms vs {1:.3f} ms'.format(elim1_avg * 1000, elim1_avg_s * 1000))
-        print('Check for no match colors: {0:.3f} ms vs {1:.3f} ms'.format(elim2_avg * 1000, elim2_avg_s * 1000))
-        print('Calculate volume: {0:.3f} ms vs {1:.3f} ms'.format(calc_vol_avg * 1000, calc_vol_avg_s * 1000))
+        print('Check for no match colors: {0:.3f} ms vs {1:.3f} ms'.format(elim2_avg * 1000,  elim2_avg_s * 1000))
+        print('While loop repeats per object: {}'.format(while_avg))
+        print('Calculate volume: {0:.3f} ms '.format((calc_vol_avg + calc_vol_avg_s) * 1000/2))
         print('Overall: {0:.3f} ms vs {1:.3f} ms'.format(overall_avg * 1000, overall_avg_s * 1000))
+
 
     elif timed:
         cube_init_avg = sum(avg_cube_init) / len(avg_cube_init)
@@ -52,6 +55,7 @@ def image_scanner(interact=False, rotate=True, data="input.txt", timed=True, plo
         elim2_avg = sum(avg_elim_2) / len(avg_elim_2)
         calc_vol_avg = sum(avg_calc_vol) / len(avg_calc_vol)
         overall_avg = sum(avg_all) / len(avg_all)
+        while_avg = sum(all_while_loops) / len(all_while_loops)
 
         print()
         print("---------- Average Time Analysis  -----------")
@@ -59,6 +63,7 @@ def image_scanner(interact=False, rotate=True, data="input.txt", timed=True, plo
         print('Cube Initialization: {0:.3f} ms'.format(cube_init_avg * 1000))
         print('Check for void pixels: {0:.3f} ms'.format(elim1_avg * 1000))
         print('Check for no match colors: {0:.3f} ms'.format(elim2_avg * 1000))
+        print('While loop repeats per object: {}'.format(while_avg))
         print('Calculate volume: {0:.3f} ms'.format(calc_vol_avg * 1000))
         print('Overall: {0:.3f} ms'.format(overall_avg * 1000))
 
