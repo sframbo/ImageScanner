@@ -18,7 +18,6 @@ def translate_to_side(str):
         'right': RIGHT,
         'top': TOP,
         'bottom': BOTTOM,
-
     }
     return switch.get(str, BOTTOM)
 

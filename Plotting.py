@@ -29,7 +29,7 @@ def cuboid_data(pos, size=(1,1,1)):
 
 def plot_cube_at(pos=(0, 0, 0), ax=None, c='b'):
     if ax is not None:
-        X, Y, Z = cuboid_data( pos )
+        X, Y, Z = cuboid_data(pos)
     ax.plot_surface(X, Y, Z, color=c, rstride=1, cstride=1, linewidth=0, antialiased=False, shade=False, alpha=1)
 
 
@@ -53,21 +53,45 @@ def plot_matrix(ax, matrix):
                     plot_cube_at(pos=(i - 0.5, j - 0.5, k - 0.5), ax=ax, c=c)
 
 
-def plot(N, ma):
+def plot(N, ma, _rotate=False):
     fig = plt.figure('Object Scanner')
 
     ax = fig.gca(projection='3d')
     ax.axis('off')
-    # ax.text(0, 0, 0, "blah", fontsize=12)
-    # ax.set(xlim=(0,N), ylim=(0,N), zlim=(0,N))
     plot_matrix(ax, ma)
 
-    while plt.fignum_exists(fig.number):
-        for angle in range(0, 360):
-            if not plt.fignum_exists(fig.number):
-                break
-            ax.view_init(30, angle)
-            plt.draw()
-            plt.pause(.001)
+    if _rotate:
+        while plt.fignum_exists(fig.number):
+            for angle in range(0, 360):
+                if not plt.fignum_exists(fig.number):
+                    break
+                ax.view_init(30, angle)
+                plt.draw()
+                plt.pause(.001)
+            plt.close()
+    else:
+        while plt.fignum_exists(fig.number):
+            for angle in range(0, 360):
+                if not plt.fignum_exists(fig.number):
+                    break
+                plt.draw()
+                plt.pause(.001)
 
-        plt.close()
+
+def plot_1(N, ma):
+    fig = plt.figure('Object Scanner')
+
+    ax = fig.gca(projection='3d')
+    ax.axis('off')
+    plot_matrix(ax, ma)
+    plt.draw()
+    plt.pause(.001)
+    return fig, ax
+
+
+def update_plt(ax, ma, delay=.01):
+    plt.cla()
+    ax.axis('off')
+    plot_matrix(ax, ma)
+    plt.draw()
+    plt.pause(delay)

@@ -27,10 +27,10 @@ QUICKSILVER = Color('QUICKSILVER', 'Q', '#C0C0C0')
 RED = Color('RED', 'R', '#FF0000')
 SEASHELL = Color('SEASHELL', 'S', '#FFF5EE')
 TAN = Color('TAN', 'T', '#D2B48C')
-PERU = Color('PERU', 'U', '#CD853F')
+PERU = Color('PERU', 'U', '#CD853Fdata')
 IVORY = Color('IVORY', 'V', '#FFFFF0')
 WHITE = Color('WHITE', 'W', '#F5F5F5')
-XRAY = Color('XRAY', 'X', '#2F4F4F')
+XANTHIC = Color('XANTHIC', 'X', '#EEED09')
 YELLOW = Color('Yellow', 'Y', '#FFFF00')
 ZAFFRE = Color('ZAFFRE', 'Z', '#008080')
 
@@ -65,7 +65,7 @@ def translate_to(str):
         'U' : PERU,
         'V' : IVORY,
         'W' : WHITE,
-        'X' : XRAY,
+        'X' : XANTHIC,
         'Y' : YELLOW,
         'Z' : ZAFFRE,
         '.' : VOID

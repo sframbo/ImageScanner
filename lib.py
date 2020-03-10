@@ -4,16 +4,8 @@ from Colors import translate_to, VOID, NO_COLOR
 from Sides import FRONT, LEFT, BACK, RIGHT, TOP, BOTTOM
 from Plotting import plot
 import random
+import string
 
-# TO DO:
-# - create data type for color and transparent -- DONE
-# - find a way to visually recreate the cube after algorithm -- DONE
-# - add extra algorithm of checking if voxel is viewable and if not, then check from the opposite side. If at some point
-#       a voxel is not viewable, assume the rest as not viewable . . R - - - L -- DONE
-
-
-# this represents the 3-dimensional space containing the object
-# each matrix represents a vertical slice of the space with the viewer observing it from the left of the container
 cube_space = []
 N = 0   # dimension
 object_data = []    # image data of current object being processed
@@ -31,8 +23,10 @@ avg_all_s = []
 
 all_while_loops = []
 
+delay = .001
 
-def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
+
+def calculate_weight(_n, _i, _timed=True, _plt=True, _plt_f=True, _compare=False, _rotate=True, _delay=.0001, _print=True):
     global N
     global cube_space
     global object_data
@@ -42,10 +36,12 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
     global avg_elim_1
     global avg_elim_2
     global all_while_loops
+    global delay
+    delay = _delay
 
     runtime = 0
     N = _n
-    # print("N changed to " + str(N))
+    NNN = N*N*N
 
     start = timer()
     initialize_cube_space(N)
@@ -53,37 +49,43 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
     length_1 = end - start
 
     runtime += length_1
-    avg_cube_init.append(length_1/N)
+    avg_cube_init.append(length_1/NNN)
 
     object_data = _i
 
     start = timer()
-    is_empty_space = scan_for_see_through(_i)
+    scan_for_see_through(_i)
     end = timer()
     length_2 = end - start
     runtime += length_2
-    avg_elim_1.append(length_2/N)
+    avg_elim_1.append(length_2/NNN)
 
     start = timer()
-    if not is_empty_space:
-        scan_for_no_match(_i)
+    if N < 5:
+        scan_for_no_match_slow(cube_space)
+    else:
+        scan_for_no_match()
     end = timer()
+
     length_3 = end - start
     runtime += length_3
-    avg_elim_2.append(length_3/N)
+    avg_elim_2.append(length_3/NNN)
     all_while_loops.append(while_loops)
 
     start = timer()
-    print_max_weight(_empty=is_empty_space)
+    print_max_weight(_print)
     end = timer()
     length_4 = end - start
     runtime += length_4
-    avg_calc_vol.append(length_4/N)
+    avg_calc_vol.append(length_4/NNN)
 
-    avg_all.append(runtime/N)
-    # print(cube_space)
+    avg_all.append(runtime/NNN)
 
-    print("Cubic dimension: {}x{}x{}".format(N, N, N))
+    if _print:
+        print("Cubic dimension: {}x{}x{}".format(N, N, N))
+
+    if _plt_f:
+        plot(N, cube_space)
 
     if _timed and _compare:
         runtime_s = 0
@@ -92,7 +94,7 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
         end = timer()
         length_s1 = end - start
         runtime_s += length_s1
-        avg_cube_init_s.append(length_s1 / N)
+        avg_cube_init_s.append(length_s1 / NNN)
 
         object_data = _i
 
@@ -101,47 +103,25 @@ def calculate_weight(_n, _i, _timed=True, _plt=True, _compare=False):
         end = timer()
         length_s2 = end - start
         runtime_s += length_s2
-        avg_elim_1_s.append(length_s2 / N)
+        avg_elim_1_s.append(length_s2 / NNN)
 
         start = timer()
         scan_for_no_match_slow(_i)
         end = timer()
         length_s3 = end - start
         runtime_s += length_s3
-        avg_elim_2_s.append(length_s3 / N)
+        avg_elim_2_s.append(length_s3 / NNN)
 
         start = timer()
-        print_max_weight(True)
+        print_max_weight(_print)
         end = timer()
         length_s4 = end - start
         runtime_s += length_s4
-        avg_calc_vol_s.append(length_s4 / N)
+        avg_calc_vol_s.append(length_s4 / NNN)
 
-        avg_all_s.append(runtime_s / N)
+        avg_all_s.append(runtime_s / NNN)
 
-        print("☻ ---------- ANALYZING RUNTIME (per N) _ OPTIMIZED vs NAIVE ---------- ☻")
-        print("While-loops: {}".format(while_loops))
-        # print("Initialize cube elapse time: {0:.3f} ms vs {1:.3f} ms".format(length_1 * 1000, length_s1 * 1000))
-        print("Scanning for void pixels: {0:.3f} ms vs {1:.3f} ms".format(length_2 * 1000, length_s2 * 1000))
-        print("Scanning for match violations: {0:.3f} ms vs {1:.3f} ms".format(length_3 * 1000, length_s3 * 1000))
-        # print("Calculating cubic volume: {0:.3f} ms vs {1:.3f} ms".format(length_4 * 1000, length_s4 * 1000))
-
-        print("Overall Runtime per cube: {0:.3f} ms vs {1:.3f} ms".format(runtime * 1000, runtime_s * 1000))
-        # print("Optimized version is {0:.3f} times faster than naive version.".format(runtime/runtime_s))
-        print("------------------------------ ✂ ------------------------------")
-
-    elif _timed:
-        print("☻ -------- ANALYZING RUNTIME (per N) -------- ☻")
-        print("While-loops: {}".format(while_loops))
-        # print("Initialize cube elapse time: {0:.3f} ms".format(length_1 * 1000))
-        print("Scanning for void pixels: {0:.3f} ms".format(length_2 * 1000))
-        print("Scanning for match violations: {0:.3f} ms".format(length_3 * 1000))
-        # print("Calculating cubic volume: {0:.3f} ms".format(length_4 * 1000))
-        print("Overall Runtime per cube: {0:.3f} ms".format(runtime * 1000))
-        print("----------------- ✂ -----------------")
-
-    if _plt:
-        plot(N, cube_space)
+    return N
 
 
 # sums up all the nonempty voxels in the 3d space
@@ -162,7 +142,7 @@ def initialize_cube_space(N, w=1):
     for a in range(cube_space.shape[0]):
         for b in range(cube_space.shape[1]):
             for c in range(cube_space.shape[2]):
-                cube_space[a, b, c] = [w, "r"]
+                cube_space[a, b, c] = [w, "m"]
 
 
 # ===================================================================
@@ -217,6 +197,25 @@ def process_line(line):
     return output
 
 
+def make_random(n, l=26, multi=False, repeat=5):
+    f = open("inputs/temp.txt", "w+")
+    sys_rand = random.SystemRandom()
+
+    letters = string.ascii_uppercase
+    # letters += '.'
+    for _ in range(repeat):
+        m = random.randint(1, n)
+        m = n
+        letters = [random.choice(letters) for _ in range(l)]
+        f.write('{} \n'.format(m))
+        for _ in range(1,m+1):
+            for _ in range(6):
+                f.write(''.join(sys_rand.choice(letters) for _ in range(m)) + ' ')
+            f.write('\n')
+    f.write('0')
+    f.close()
+
+
 # ===================================================================
 #            =========== FIRST ELIMINATION ===========
 # ===================================================================
@@ -224,14 +223,20 @@ def process_line(line):
 # NOTE: Only check FRONT, RIGHT and TOP sides as opposite sides mirror each other with regards to see-through pixels
 def scan_for_see_through(image_input):
     # Locating the pixel marked with "." and delete all affected voxels
-    redundant_sides = [BACK, LEFT, BOTTOM]
+    # redundant_sides = [BACK, LEFT, BOTTOM]
+    scanned_sides = [FRONT, RIGHT, TOP]
     for index, horizontal_slice in enumerate(image_input):
-        for side, pixels in horizontal_slice.items():
-            if side in redundant_sides:
-                continue
-            for pindex, pixel in enumerate(pixels):
+        for side in scanned_sides:
+            for pindex, pixel in enumerate(horizontal_slice.get(side)):
                 if pixel == VOID:
                     delete_nonexistent_voxels(index, side, pindex)
+
+        # for side, pixels in horizontal_slice.items():
+        #     if side in redundant_sides:
+        #         continue
+        #     for pindex, pixel in enumerate(pixels):
+        #         if pixel == VOID:
+        #             delete_nonexistent_voxels(index, side, pindex)
     return False
 
 
@@ -246,42 +251,69 @@ def scan_for_see_through_slow(image_input):
     return False
 
 
-# delete all neighboring voxel from a given side + address
 def delete_nonexistent_voxels(index, side, pindex):
-    switch = {
-        FRONT:  lambda: front_back_case(index, pindex, FRONT),
-        BACK:   lambda: front_back_case(index, pindex, BACK),
-        LEFT:   lambda: right_left_case(index, pindex, LEFT),
-        RIGHT:  lambda: right_left_case(index, pindex, RIGHT),
-        TOP:    lambda: top_bottom_case(index, pindex, TOP),
-        BOTTOM: lambda: top_bottom_case(index, pindex, BOTTOM)
-    }
-    func = switch.get(side, lambda: "invalid")
-    return func()
-
-
-_offset = -1
-
-
-def front_back_case(index, pindex, side):
     global cube_space
-    pindex = N - pindex + _offset if side == BACK else pindex
-    for p in range(N):
-        cube_space[pindex][index][p][0] = 0
+    if side in [FRONT, BACK]:
+        for p in range(N):
+            cube_space[pindex][index][p][0] = 0
+    elif side in [RIGHT, LEFT]:
+        for p in range(N):
+            cube_space[p][index][pindex][0] = 0
+    else:
+        for p in range(N):
+            cube_space[pindex][p][index][0] = 0
 
 
-def right_left_case(index, pindex, side):
-    global cube_space
-    pindex = N - pindex + _offset if side == LEFT else pindex
-    for p in range(N):
-        cube_space[p][index][pindex][0] = 0
+# delete all neighboring voxel from a given side + address
+# def delete_nonexistent_voxels(index, side, pindex):
+#     switch = {
+#         FRONT:  lambda: front_back_case(index, pindex, FRONT),
+#         BACK:   lambda: front_back_case(index, pindex, BACK),
+#         LEFT:   lambda: right_left_case(index, pindex, LEFT),
+#         RIGHT:  lambda: right_left_case(index, pindex, RIGHT),
+#         TOP:    lambda: top_bottom_case(index, pindex, TOP),
+#         BOTTOM: lambda: top_bottom_case(index, pindex, BOTTOM)
+#     }
+#     func = switch.get(side, lambda: "invalid")
+#     return func()
 
 
-def top_bottom_case(index, pindex, side):
-    global cube_space
-    index = N - index + _offset if side == TOP else index
-    for p in range(N):
-        cube_space[pindex][p][index][0] = 0
+# _offset = -1
+
+
+#
+# def switch_delete(index, pindex, side):
+#     global  cube_space
+#     if side in [FRONT, BACK]:
+#         for p in range(N):
+#             cube_space[pindex][index][p][0] = 0
+#     elif side in [RIGHT, LEFT]:
+#         for p in range(N):
+#             cube_space[p][index][pindex][0] = 0
+#     else:
+#         for p in range(N):
+#             cube_space[pindex][p][index][0] = 0
+#
+#
+# def front_back_case(index, pindex, side):
+#     global cube_space
+#     # pindex = N - pindex + _offset if side == BACK else pindex
+#     for p in range(N):
+#         cube_space[pindex][index][p][0] = 0
+#
+#
+# def right_left_case(index, pindex, side):
+#     global cube_space
+#     # pindex = N - pindex + _offset if side == LEFT else pindex
+#     for p in range(N):
+#         cube_space[p][index][pindex][0] = 0
+#
+#
+# def top_bottom_case(index, pindex, side):
+#     global cube_space
+#     # index = N - index + _offset if side == BOTTOM else index
+#     for p in range(N):
+#         cube_space[pindex][p][index][0] = 0
 
 
 # ======================================================================================
@@ -294,92 +326,142 @@ _current_is_viewable = False
 while_loops = 0
 
 
-# checking from all sides with while
-def scan_for_no_match(inp):
+# checking from all sides with while loop (break while-loop if no changes in between side-side scans)
+def scan_for_no_match():
     global while_loops
+    global _current_is_viewable
     overall_changed = True
-    while_loops = 0
+    while_loops = -1
+
     while overall_changed:
-        while_loops =+ 1
+        while_loops += 1
         overall_changed = False
+
         # front -> back
-        global _current_is_viewable
         for X, vertical_slice in enumerate(cube_space):
             for Y, arr in enumerate(vertical_slice):
                 for P, voxel in enumerate(arr):
-                    if cube_space[X][Y][P][0] == _SOLID:
-                        cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+                    if cube_space[X, Y, P][0] == _SOLID:
+                        cube_space[X, Y, P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
                                                                                                 get_true_color(X, Y, P)]
                         changed = True if cube_space[X][Y][P][0] == _EMPTY else False
                         overall_changed = overall_changed or changed
 
-                        ############# OPTIMIZING #############
                         if not _current_is_viewable:
                             reverse_check_2(X, Y, P, BACK)
                             break
                         _current_is_viewable = False
+
         # left -> right
-        for P in range(0,N):
-            for Y in range(0,N):
-                for X in range(0,N):
-                    if cube_space[X][Y][P][0] == _SOLID:
-                        cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+        for P in range(0, N):
+            for Y in range(0, N):
+                for X in range(0, N):
+                    if cube_space[X, Y, P][0] == _SOLID:
+                        cube_space[X, Y, P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
                                                                                                 get_true_color(X, Y, P)]
                         changed = True if cube_space[X][Y][P][0] == _EMPTY else False
                         overall_changed = overall_changed or changed
 
-                        ############# OPTIMIZING #############
                         if not _current_is_viewable:
                             reverse_check_2(X, Y, P, RIGHT)
                             break
                         _current_is_viewable = False
+
         # top -> bottom
-        for P in range(0,N):
-            for X in range(0,N):
-                for Y in range(0,N):
-                    if cube_space[X][Y][P][0] == _SOLID:
-                        cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+        for P in range(0, N):
+            for X in range(0, N):
+                for Y in range(0, N):
+                    if cube_space[X, Y, P][0] == _SOLID:
+                        cube_space[X, Y, P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
                                                                                                 get_true_color(X, Y, P)]
                         changed = True if cube_space[X][Y][P][0] == _EMPTY else False
                         overall_changed = overall_changed or changed
 
-                        ############# OPTIMIZING #############
                         if not _current_is_viewable:
                             reverse_check_2(X, Y, P, BOTTOM)
                             break
                         _current_is_viewable = False
 
 
+def scan_for_no_match_2():
+    global while_loops
+    global _current_is_viewable
+    overall_changed = True
+    while_loops = -1
+
+    while overall_changed:
+        while_loops += 1
+        overall_changed = False
+        inner_changed = False
+
+        # front -> back
+        for X, vertical_slice in enumerate(cube_space):
+            for Y, arr in enumerate(vertical_slice):
+                for P, voxel in enumerate(arr):
+                    if cube_space[X, Y, P][0] == _SOLID:
+                        cube_space[X, Y, P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+                                                                                                get_true_color(X, Y, P)]
+                        changed = True if cube_space[X][Y][P][0] == _EMPTY else False
+                        overall_changed = overall_changed or changed
+                        inner_changed = inner_changed or changed
+
+        if not inner_changed: return
+        inner_changed = False
+
+        # left -> right
+        for P in range(0, N):
+            for Y in range(0, N):
+                for X in range(0, N):
+                    if cube_space[X, Y, P][0] == _SOLID:
+                        cube_space[X, Y, P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+                                                                                                get_true_color(X, Y, P)]
+                        changed = True if cube_space[X][Y][P][0] == _EMPTY else False
+                        overall_changed = overall_changed or changed
+                        inner_changed = inner_changed or changed
+
+        if not inner_changed: return
+        inner_changed = False
+
+        # top -> bottom
+        for P in range(0, N):
+            for X in range(0, N):
+                for Y in range(0, N):
+                    if cube_space[X, Y, P][0] == _SOLID:
+                        cube_space[X, Y, P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
+                                                                                                get_true_color(X, Y, P)]
+                        changed = True if cube_space[X][Y][P][0] == _EMPTY else False
+                        overall_changed = overall_changed or changed
+                        inner_changed = inner_changed or changed
+
+        if not inner_changed: return
+
+
 def reverse_check_2(X, Y, P, side):
     global _current_is_viewable
     if side is BACK:
-        for i in range(N - 1, P+1, -1):
+        for i in range(N - 1, P, -1):
             if cube_space[X][Y][i][0] == _SOLID:
                 cube_space[X][Y][i] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, i) else [_SOLID, get_true_color(X, Y, i)]
-                changed = True if cube_space[X][Y][i][0] == _EMPTY else False
 
                 if not _current_is_viewable:
-                    # print("not viewable. returning")
                     _current_is_viewable = False
                     return
                 _current_is_viewable = False
     elif side is RIGHT:
-        for i in range(N - 1, X+1, -1):
+        for i in range(N - 1, X, -1):
             if cube_space[i][Y][P][0] == _SOLID:
                 cube_space[i][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(i, Y, P) else [_SOLID, get_true_color(i, Y, P)]
-                changed = True if cube_space[i][Y][P][0] == _EMPTY else False
+
                 if not _current_is_viewable:
-                    # print("not viewable. returning")
                     _current_is_viewable = False
                     return
                 _current_is_viewable = False
     elif side is BOTTOM:
-        for i in range(N - 1, Y+1, -1):
+        for i in range(N - 1, Y, -1):
             if cube_space[X][i][P][0] == _SOLID:
                 cube_space[X][i][P] = [_EMPTY, NO_COLOR] if not is_solid(X, i, P) else [_SOLID, get_true_color(X, i, P)]
-                changed = True if cube_space[X][i][P][0] == _EMPTY else False
+
                 if not _current_is_viewable:
-                    # print("not viewable. returning")
                     _current_is_viewable = False
                     return
                 _current_is_viewable = False
@@ -389,14 +471,13 @@ def reverse_check_2(X, Y, P, side):
 def scan_for_no_match_(inp):
     global while_loops
     overall_changed = True
-    while_loops = 0
+    while_loops = -1
     while overall_changed:
         while_loops += 1
         overall_changed = False
         for X, vertical_slice in enumerate(cube_space):
             for Y, arr in enumerate(vertical_slice):
                 for P, voxel in enumerate(arr):
-
                     if cube_space[X][Y][P][0] == _SOLID:
                         cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
                                                                                                 get_true_color(X, Y, P)]
@@ -414,7 +495,11 @@ def scan_for_no_match_(inp):
                         _current_is_viewable = False
 
 
+_current_color = "m"
+
+
 def scan_for_no_match_slow(inp):
+    # global _current_color
     overall_changed = True
     while overall_changed:
         overall_changed = False
@@ -425,6 +510,8 @@ def scan_for_no_match_slow(inp):
                     if cube_space[X][Y][P][0] == _SOLID:
                         cube_space[X][Y][P] = [_EMPTY, NO_COLOR] if not is_solid(X, Y, P) else [_SOLID,
                                                                                                 get_true_color(X, Y, P)]
+
+                        # _current_color = "m"
                         changed = True if cube_space[X][Y][P][0] == _EMPTY else False
                         overall_changed = overall_changed or changed
 
@@ -457,6 +544,7 @@ def is_solid(X, Y, P):
         colors.append(get_color(side, X, Y, P).initial) if _is_viewable_from else ...
         if len(set(colors)) > 1: # check if more than one color is detected
             return False
+
     return True
 
 
@@ -488,10 +576,6 @@ def is_viewable_from(side, X, Y, P):
     }
     func = switch.get(side, lambda: "invalid")
     return func()
-
-
-def nothing():
-    pass
 
 
 def get_color(side, X, Y, P):
